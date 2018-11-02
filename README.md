@@ -14,7 +14,7 @@ Applies the given function object `fn` to adjacent pairs of elements in the rang
 
 *Parameters:*
 * `first`, `last` - the range to apply the function object to,
-* `fn` - the function object to be applied, the signature should be         equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
+* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
 
 *Return value:*
 the iterator pointing to the last element in the range; `first` if the range contains less than two elements.
@@ -42,7 +42,7 @@ Applies the given function object `fn` to adjacent pairs of elements in the rang
 *Parameters:*
 * `first` - the beginning of the range to apply the function object to,
 * `n` - the number of pairs to apply the function object to,
-* `fn` - the function object to be applied, the signature should be         equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
+* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
 
 *Return value:*
 the iterator pointing to the last element in the range; `first` if the range contains less than two elements (`n` <= 0).
