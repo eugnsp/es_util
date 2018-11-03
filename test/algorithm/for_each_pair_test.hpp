@@ -14,7 +14,7 @@ protected:
 
 class For_each_pair_n_test : public For_each_pair_test { };
 
-TEST_F(For_each_pair_test, empty_test)
+TEST_F(For_each_pair_test, empty)
 {
 	es_util::for_each_pair(in0.begin(), in0.end(),
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -22,7 +22,7 @@ TEST_F(For_each_pair_test, empty_test)
 	EXPECT_TRUE(out.empty());
 }
 
-TEST_F(For_each_pair_test, one_test)
+TEST_F(For_each_pair_test, one)
 {
 	es_util::for_each_pair(in1.begin(), in1.end(),
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -30,7 +30,7 @@ TEST_F(For_each_pair_test, one_test)
 	EXPECT_TRUE(out.empty());
 }
 
-TEST_F(For_each_pair_test, two_test)
+TEST_F(For_each_pair_test, two)
 {
 	es_util::for_each_pair(in2.begin(), in2.end(),
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -39,7 +39,7 @@ TEST_F(For_each_pair_test, two_test)
 	EXPECT_EQ(out[0], 1); EXPECT_EQ(out[1], 2);
 }
 
-TEST_F(For_each_pair_test, main_test)
+TEST_F(For_each_pair_test, main)
 {
 	es_util::for_each_pair(in5.begin(), in5.end(),
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -51,7 +51,7 @@ TEST_F(For_each_pair_test, main_test)
 	EXPECT_EQ(out[6], 4); EXPECT_EQ(out[7], 5);
 }
 
-TEST_F(For_each_pair_n_test, negative_test)
+TEST_F(For_each_pair_n_test, negative)
 {
 	es_util::for_each_pair_n(in5.begin(), -1,
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -59,7 +59,7 @@ TEST_F(For_each_pair_n_test, negative_test)
 	EXPECT_TRUE(out.empty());
 }
 
-TEST_F(For_each_pair_n_test, zero_test)
+TEST_F(For_each_pair_n_test, zero)
 {
 	es_util::for_each_pair_n(in0.begin(), 0,
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });
@@ -67,7 +67,7 @@ TEST_F(For_each_pair_n_test, zero_test)
 	EXPECT_TRUE(out.empty());
 }
 
-TEST_F(For_each_pair_n_test, main_test)
+TEST_F(For_each_pair_n_test, main)
 {
 	es_util::for_each_pair_n(in5.begin(), 4,
 		[this](int x, int y) { out.push_back(x); out.push_back(y); });

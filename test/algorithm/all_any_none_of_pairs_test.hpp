@@ -14,7 +14,7 @@ class All_of_pairs_test : public All_any_none_of_pairs_test { };
 class Any_of_pairs_test : public All_any_none_of_pairs_test { };
 class None_of_pairs_test : public All_any_none_of_pairs_test { };
 
-TEST_F(All_of_pairs_test, less_than_two_test)
+TEST_F(All_of_pairs_test, less_than_two)
 {
 	EXPECT_TRUE(es_util::all_of_pairs(in0.begin(), in0.end(), 
 		[](int, int) { return false; }));
@@ -22,7 +22,7 @@ TEST_F(All_of_pairs_test, less_than_two_test)
 		[](int, int) { return false; }));	
 }
 
-TEST_F(All_of_pairs_test, main_test)
+TEST_F(All_of_pairs_test, main)
 {
 	EXPECT_TRUE(es_util::all_of_pairs(in5.begin(), in5.end(), 
 		[](int x, int y) { return x + y > 2; }));
@@ -30,7 +30,7 @@ TEST_F(All_of_pairs_test, main_test)
 		[](int x, int y) { return x + y > 3; }));
 }
 
-TEST_F(Any_of_pairs_test, less_than_two_test)
+TEST_F(Any_of_pairs_test, less_than_two)
 {
 	EXPECT_FALSE(es_util::any_of_pairs(in0.begin(), in0.end(), 
 		[](int, int) { return true; }));
@@ -38,7 +38,7 @@ TEST_F(Any_of_pairs_test, less_than_two_test)
 		[](int, int) { return true; }));
 }
 
-TEST_F(Any_of_pairs_test, main_test)
+TEST_F(Any_of_pairs_test, main)
 {
 	EXPECT_TRUE(es_util::any_of_pairs(in5.begin(), in5.end(), 
 		[](int x, int y) { return x + y > 8; }));
@@ -46,7 +46,7 @@ TEST_F(Any_of_pairs_test, main_test)
 		[](int x, int y) { return x + y > 9; }));
 }
 
-TEST_F(None_of_pairs_test, less_than_two_test)
+TEST_F(None_of_pairs_test, less_than_two)
 {
 	std::vector<int> in0{};	
 	std::vector<int> in1{1};	
@@ -57,7 +57,7 @@ TEST_F(None_of_pairs_test, less_than_two_test)
 		[](int, int) { return false; }));
 }
 
-TEST_F(None_of_pairs_test, main_test)
+TEST_F(None_of_pairs_test, main)
 {
 	EXPECT_TRUE(es_util::none_of_pairs(in5.begin(), in5.end(), 
 		[](int x, int y) { return x + y > 9; }));

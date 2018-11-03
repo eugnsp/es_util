@@ -12,7 +12,7 @@ bool all_of_pairs(Forward_iterator begin, Forward_iterator end, Predicate pred)
 	if (begin == end)
 		return true;
 
-	for (auto next = std::next(begin); next != end; ++begin, ++next)
+	for (auto next = ::std::next(begin); next != end; ++begin, ++next)
 		if (!pred(*begin, *next))
 			return false;
 
@@ -28,7 +28,7 @@ bool any_of_pairs(Forward_iterator begin, Forward_iterator end, Predicate pred)
 	if (begin == end)
 		return false;
 
-	for (auto next = std::next(begin); next != end; ++begin, ++next)
+	for (auto next = ::std::next(begin); next != end; ++begin, ++next)
 		if (pred(*begin, *next))
 			return true;
 
@@ -44,7 +44,7 @@ bool none_of_pairs(Forward_iterator begin, Forward_iterator end, Predicate pred)
 	if (begin == end)
 		return true;
 
-	for (auto next = std::next(begin); next != end; ++begin, ++next)
+	for (auto next = ::std::next(begin); next != end; ++begin, ++next)
 		if (pred(*begin, *next))
 			return false;
 

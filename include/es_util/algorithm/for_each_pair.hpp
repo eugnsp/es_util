@@ -16,13 +16,13 @@ namespace es_util
 // Return value:
 //  the iterator pointing to the last element in the range,
 //  first if the range contains less than two elements.
-template<class Forward_iterator, class Forward_iterator_end, class Fn>
-Forward_iterator for_each_pair(Forward_iterator first, Forward_iterator_end last, Fn&& fn)
+template<class Forward_iterator1, class Forward_iterator2, class Fn>
+Forward_iterator1 for_each_pair(Forward_iterator1 first, Forward_iterator2 last, Fn&& fn)
 {
 	if (first == last)
 		return first;
 
-	auto next = std::next(first);
+	auto next = ::std::next(first);
 	while (next != last)
 		fn(*first++, *next++);
 
