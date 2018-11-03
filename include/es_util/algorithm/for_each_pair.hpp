@@ -1,18 +1,7 @@
 #pragma once
-#include <es_util/type_traits.hpp>
-#include <es_util/numeric.hpp>
-#include <es_util/tuple.hpp>
-
-#include <algorithm>
-#include <array>
-#include <cassert>
-#include <cstddef>
 #include <iterator>
-#include <numeric>
-#include <type_traits>
-#include <utility>
 
-namespace es::util
+namespace es_util
 {
 // Applies a given function object to adjacent pairs of elements
 // in the range [first, last), in order.
@@ -27,8 +16,8 @@ namespace es::util
 // Return value:
 //  the iterator pointing to the last element in the range,
 //  first if the range contains less than two elements.
-template<class Fw_it, class Fw_it_end, class Fn>
-Fw_it for_each_pair(Fw_it first, Fw_it_end last, Fn&& fn)
+template<class Forward_iterator, class Forward_iterator_end, class Fn>
+Forward_iterator for_each_pair(Forward_iterator first, Forward_iterator_end last, Fn&& fn)
 {
 	if (first == last)
 		return first;
@@ -52,8 +41,8 @@ Fw_it for_each_pair(Fw_it first, Fw_it_end last, Fn&& fn)
 // Return value:
 //  the iterator pointing to the last element in the range,
 //  <first> if the range contains less than two elements (n <= 0).
-template<class Fw_it, typename N, class Fn>
-Fw_it for_each_pair_n(Fw_it first, N n, Fn&& fn)
+template<class Forward_iterator, typename N, class Fn>
+Forward_iterator for_each_pair_n(Forward_iterator first, N n, Fn&& fn)
 {
 	auto next = first;
 	for (N i = 0; i < n; ++i)
@@ -61,5 +50,4 @@ Fw_it for_each_pair_n(Fw_it first, N n, Fn&& fn)
 
 	return first;
 }
-
 }

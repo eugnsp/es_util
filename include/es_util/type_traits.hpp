@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace es::util
+namespace es_util
 {
 template<class T>
 struct Remove_cvref

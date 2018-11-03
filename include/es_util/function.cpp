@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iomanip>
 
-namespace es::util
+namespace es_util
 {
 // Checks if a string ends with a given substring
 bool ends_with(const std::string& str, const std::string& ending, bool caseSensitive)

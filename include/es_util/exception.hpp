@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace es::util
+namespace es_util
 {
 class UnreachableException : public std::logic_error
 {

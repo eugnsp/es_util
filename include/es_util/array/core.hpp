@@ -4,7 +4,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace es::util
+namespace es_util
 {
 template<class Array>
 inline constexpr auto array_size = std::tuple_size_v<std::remove_reference_t<Array>>;

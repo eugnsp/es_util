@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <tuple>
 
-namespace es::util
+namespace es_util
 {
 namespace internal
 {

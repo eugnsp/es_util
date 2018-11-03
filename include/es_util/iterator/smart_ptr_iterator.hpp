@@ -5,7 +5,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace es::util
+namespace es_util
 {
 // An iterator adapter with the same behavior as the underlying iterator except that 
 // its dereference operator returns an object managed by a smart pointer, and not 

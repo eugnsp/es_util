@@ -7,7 +7,7 @@
 #include <es_util/tuple/map.hpp>
 #include <es_util/tuple/to_array.hpp>
 
-namespace es::util
+namespace es_util
 {
 namespace internal
 {

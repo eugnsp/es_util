@@ -2,7 +2,7 @@
 #include <tuple>
 #include <type_traits>
 
-namespace es::util
+namespace es_util
 {
 // Gives the number of elements in a tuple
 template<class Tuple>

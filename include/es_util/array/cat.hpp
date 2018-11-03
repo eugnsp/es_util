@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <utility>
 
-namespace es::util
+namespace es_util
 {
 namespace internal
 {

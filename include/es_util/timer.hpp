@@ -2,7 +2,7 @@
 #include <chrono>
 #include <ratio>
 
-namespace es::util
+namespace es_util
 {
 class Timer
 {

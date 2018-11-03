@@ -2,7 +2,7 @@
 #include <ctime>
 #include <string>
 
-namespace util
+namespace es_util
 {
 inline std::string date_time_string(const std::string& format = "%a, %d %b %Y %T")
 {

@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <type_traits>
 
-namespace es::util
+namespace es_util
 {
 namespace internal
 {

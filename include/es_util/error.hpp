@@ -3,7 +3,7 @@
 #include <sstream>
 #include <stdexcept>
 
-namespace es::util
+namespace es_util
 {
 	// TO DO : Rename class
 	class Error

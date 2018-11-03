@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <cassert>
 
-namespace es::util
+namespace es_util
 {
 template<class... Ts>
 class Tuple_ref : public std::tuple<Ts...>
@@ -39,7 +39,7 @@ private:
 // }
 }
 
-namespace es::util
+namespace es_util
 {
 template<class... Iterators>
 class Zip_iterator

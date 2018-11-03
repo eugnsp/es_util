@@ -1,6 +1,7 @@
-#include <es_util/tuple.hpp>
-
 #include <gtest/gtest.h>
+
+#include "algorithm/all_any_none_of_pairs_test.hpp"
+#include "algorithm/for_each_pair_test.hpp"
 
 GTEST_API_ int main(int argc, char **argv)
 {

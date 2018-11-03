@@ -1,7 +1,7 @@
 #pragma once
 #include <utility>
 
-namespace es::util
+namespace es_util
 {
 template<class Iter_begin, class Iter_end = Iter_begin>
 class Iterable
