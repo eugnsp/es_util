@@ -10,25 +10,22 @@ namespace es_util
 {
 namespace internal
 {
-template<class Pred, class Tuple, ::std::size_t... indices>
-constexpr bool tuple_all_of(Pred pred, Tuple&& tuple, ::std::index_sequence<indices...>)
+template<class Pred, class Tuple, std::size_t... indices>
+constexpr bool tuple_all_of(Pred pred, Tuple&& tuple, std::index_sequence<indices...>)
 {
-	using ::std::get;
-	return (... && pred(get<indices>(::std::forward<Tuple>(tuple))));
+	return (... && pred(std::get<indices>(std::forward<Tuple>(tuple))));
 }
 
-template<class Pred, class Tuple, ::std::size_t... indices>
-constexpr bool tuple_any_of(Pred pred, Tuple&& tuple, ::std::index_sequence<indices...>)
+template<class Pred, class Tuple, std::size_t... indices>
+constexpr bool tuple_any_of(Pred pred, Tuple&& tuple, std::index_sequence<indices...>)
 {
-	using ::std::get;
-	return (... || pred(get<indices>(::std::forward<Tuple>(tuple))));
+	return (... || pred(std::get<indices>(std::forward<Tuple>(tuple))));
 }
 
-template<class Pred, class Tuple, ::std::size_t... indices>
-constexpr bool tuple_none_of(Pred pred, Tuple&& tuple, ::std::index_sequence<indices...>)
+template<class Pred, class Tuple, std::size_t... indices>
+constexpr bool tuple_none_of(Pred pred, Tuple&& tuple, std::index_sequence<indices...>)
 {
-	using ::std::get;
-	return (... && !pred(get<indices>(::std::forward<Tuple>(tuple))));
+	return (... && !pred(std::get<indices>(std::forward<Tuple>(tuple))));
 }
 }
 
@@ -40,11 +37,11 @@ constexpr bool tuple_all_of(Pred pred, Tuples&&... tuples)
 	if constexpr (sizeof...(Tuples) == 0)
 		return true;
 	else if constexpr (sizeof...(Tuples) == 1)
-		return internal::tuple_all_of(pred, ::std::forward<Tuples>(tuples)...,
+		return internal::tuple_all_of(pred, std::forward<Tuples>(tuples)...,
 			internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_all_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(::std::forward<Tuples>(tuples)...));
+			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 
 // Checks whether a predicate returns `true` for any
@@ -55,11 +52,11 @@ constexpr bool tuple_any_of(Pred pred, Tuples&&... tuples)
 	if constexpr (sizeof...(Tuples) == 0)
 		return false;
 	else if constexpr (sizeof...(Tuples) == 1)
-		return internal::tuple_any_of(pred, ::std::forward<Tuples>(tuples)...,
+		return internal::tuple_any_of(pred, std::forward<Tuples>(tuples)...,
 			internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_any_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(::std::forward<Tuples>(tuples)...));
+			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 
 // Checks whether a predicate returns `true` for none
@@ -70,10 +67,10 @@ constexpr bool tuple_none_of(Pred pred, Tuples&&... tuples)
 	if constexpr (sizeof...(Tuples) == 0)
 		return true;
 	else if constexpr (sizeof...(Tuples) == 1)
-		return internal::tuple_none_of(pred, ::std::forward<Tuples>(tuples)...,
+		return internal::tuple_none_of(pred, std::forward<Tuples>(tuples)...,
 			internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_none_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(::std::forward<Tuples>(tuples)...));
+			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 }

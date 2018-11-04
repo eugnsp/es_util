@@ -1,4 +1,7 @@
 #pragma once
+#include <es_util/type_traits/all_any_none.hpp>
+#include <es_util/type_traits/index_of.hpp>
+#include <es_util/type_traits/nth.hpp>
 #include <cstddef>
 #include <type_traits>
 #include <utility>
@@ -30,22 +33,6 @@ using Identity_t = typename Identity<T>::Type;
 
 template<typename T, typename Default>
 using Non_void_t_or = std::conditional_t<std::is_void_v<T>, Default, T>;
-
-//////////////////////////////////////////////////////////////////////////
-
-// Checks whether all bool values are true (true if the pack is empty)
-template<bool... values>
-struct All : std::conjunction<std::bool_constant<values>...> { };
-
-// Checks whether any bool value is true (false if the pack is empty)
-template<bool... values>
-struct Any : std::disjunction<std::bool_constant<values>...> { };
-
-template<bool... values>
-inline constexpr bool all_v = All<values...>::value;
-
-template<bool... values>
-inline constexpr bool any_v = Any<values...>::value;
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -84,48 +71,6 @@ inline constexpr auto all_same = (... && (value == values));
 
 template<auto... values>
 struct All_same : std::bool_constant<all_same<values...>> { };
-
-//////////////////////////////////////////////////////////////////////////
-
-// Returns the type of the n-th element in the pack
-template<std::size_t n, typename T, typename... Ts>
-struct Nth
-{
-	using Type = typename Nth<n - 1, Ts...>::Type;
-};
-
-template<typename T, typename... Ts>
-struct Nth<0, T, Ts...>
-{
-	using Type = T;
-};
-
-// Returns the type of the n-th element in the pack
-template<std::size_t i, class... Ts>
-using Nth_t = typename Nth<i, Ts...>::Type;
-
-template<typename T, typename...>
-struct Head
-{
-	using Type = T;
-};
-
-template<typename... Ts>
-using Head_t = typename Head<Ts...>::Type;
-
-//////////////////////////////////////////////////////////////////////////
-
-template<typename T, typename... Ts>
-struct Index;
-
-template<typename T, typename... Ts>
-struct Index<T, T, Ts...> : std::integral_constant<std::size_t, 0> { };
-
-template<typename T, typename NT, typename... Ts>
-struct Index<T, NT, Ts...> : std::integral_constant<std::size_t, 1 + Index<T, Ts...>::value> { };
-
-template<typename T, typename... Ts>
-inline constexpr std::size_t index_v = Index<T, Ts...>::value;
 
 //////////////////////////////////////////////////////////////////////////
 

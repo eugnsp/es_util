@@ -8,6 +8,12 @@
 
 #include "array/core_test.hpp"
 
+#include "string/ends_with_test.hpp"
+
+#include "type_traits/all_any_none_test.hpp"
+#include "type_traits/index_of_test.hpp"
+#include "type_traits/nth_test.hpp"
+
 GTEST_API_ int main(int argc, char **argv)
 {
 	testing::InitGoogleTest(&argc, argv);

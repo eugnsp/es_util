@@ -61,9 +61,6 @@ auto average(Iter begin, const Iter end, Function func = Function{})
 	return result;
 }
 
-// Checks if a string ends with a given substring
-bool ends_with(const std::string& str, const std::string& ending, bool case_sensitive = true);
-
 // Returns size in bytes in a human readable form
 std::string size_string(std::size_t size);
 

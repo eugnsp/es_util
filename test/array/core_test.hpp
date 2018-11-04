@@ -9,17 +9,15 @@ TEST(array_core_test, array_size)
 	using A0 = std::array<int, 0>;
 	using A1 = std::array<int, 1>;
 
-	static_assert(es_util::array_size<A0> == 0);
-	static_assert(es_util::array_size<const A0> == 0);
-	static_assert(es_util::array_size<A0&> == 0);
-	static_assert(es_util::array_size<const A0&> == 0);
+	EXPECT_EQ(es_util::array_size<A0>, 0);
+	EXPECT_EQ(es_util::array_size<const A0>, 0);
+	EXPECT_EQ(es_util::array_size<A0&>, 0);
+	EXPECT_EQ(es_util::array_size<const A0&>, 0);
 
-	static_assert(es_util::array_size<A1> == 1);
-	static_assert(es_util::array_size<const A1> == 1);
-	static_assert(es_util::array_size<A1&> == 1);
-	static_assert(es_util::array_size<const A1&> == 1);
-
-	SUCCEED();
+	EXPECT_EQ(es_util::array_size<A1>, 1);
+	EXPECT_EQ(es_util::array_size<const A1>, 1);
+	EXPECT_EQ(es_util::array_size<A1&>, 1);
+	EXPECT_EQ(es_util::array_size<const A1&>, 1);
 }
 
 TEST(array_core_test, make_array)

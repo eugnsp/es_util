@@ -8,18 +8,6 @@
 
 namespace es_util
 {
-// Checks if a string ends with a given substring
-bool ends_with(const std::string& str, const std::string& ending, bool caseSensitive)
-{
-	if (ending.size() > str.size())
-		return false;
-
-	return caseSensitive ?
-		std::equal(ending.rbegin(), ending.rend(), str.rbegin()) :
-		std::equal(ending.rbegin(), ending.rend(), str.rbegin(), [](char c1, char c2)
-	{ return std::tolower(c1) == std::tolower(c2); });
-}
-
 // Returns size in bytes in a human readable form
 std::string size_string(std::size_t size)
 {

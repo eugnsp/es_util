@@ -11,16 +11,15 @@ namespace es_util
 {
 namespace internal
 {
-template<class Fn, class Tuple, ::std::size_t... indices>
-constexpr auto tuple_map(Fn&& fn, Tuple&& tuple, ::std::index_sequence<indices...>)
+template<class Fn, class Tuple, std::size_t... indices>
+constexpr auto tuple_map(Fn&& fn, Tuple&& tuple, std::index_sequence<indices...>)
 {
 	// See: https://stackoverflow.com/questions/51727961/what-should-tuple-map-return
 
-	using ::std::get;
-	using Ret = ::std::tuple<::std::invoke_result_t
-		<Fn, decltype(get<indices>(::std::forward<Tuple>(tuple)))>...>;
+	using Ret = std::tuple<std::invoke_result_t
+		<Fn, decltype(std::get<indices>(std::forward<Tuple>(tuple)))>...>;
 
-	return Ret{fn(get<indices>(::std::forward<Tuple>(tuple)))...};
+	return Ret{fn(std::get<indices>(std::forward<Tuple>(tuple)))...};
 }
 }
 
@@ -33,12 +32,12 @@ constexpr auto tuple_map(Fn&& fn, Tuples&&... tuples)
 
 	if constexpr (sizeof...(Tuples) == 1)
 		if constexpr (tuple_size<Tuples...> == 0)
-			return ::std::make_tuple();
+			return std::make_tuple();
 		else
-			return internal::tuple_map(::std::forward<Fn>(fn), ::std::forward<Tuples>(tuples)...,
+			return internal::tuple_map(std::forward<Fn>(fn), std::forward<Tuples>(tuples)...,
 				internal::index_sequence_for_tuple<Tuples...>);
 	else
-		return tuple_map(internal::forward_with_apply(::std::forward<Fn>(fn)),
-			tuple_forward_as_zipped(::std::forward<Tuples>(tuples)...));
+		return tuple_map(internal::forward_with_apply(std::forward<Fn>(fn)),
+			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 }

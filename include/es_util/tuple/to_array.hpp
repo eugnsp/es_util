@@ -12,18 +12,17 @@ namespace es_util
 {
 namespace internal
 {
-template<class Tuple, ::std::size_t... indices>
-constexpr auto tuple_to_array(Tuple&& tuple, ::std::index_sequence<indices...>)
+template<class Tuple, std::size_t... indices>
+constexpr auto tuple_to_array(Tuple&& tuple, std::index_sequence<indices...>)
 {
-	using ::std::get;
-	return make_array(get<indices>(::std::forward<Tuple>(tuple))...);
+	return make_array(std::get<indices>(std::forward<Tuple>(tuple))...);
 }
 }
 
 template<class Tuple>
 constexpr auto tuple_to_array(Tuple&& tuple)
 {
-	return internal::tuple_to_array(::std::forward<Tuple>(tuple),
+	return internal::tuple_to_array(std::forward<Tuple>(tuple),
 				internal::index_sequence_for_tuple<Tuple>);
 }
 }

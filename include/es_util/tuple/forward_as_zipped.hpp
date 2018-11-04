@@ -9,19 +9,18 @@ namespace es_util
 {
 namespace internal
 {
-template<::std::size_t index, class... Tuples>
+template<std::size_t index, class... Tuples>
 auto tuple_forward_as_zipped(Tuples&&... tuples)
 {
-	using ::std::get;
-	return ::std::forward_as_tuple(get<index>(
-		::std::forward<Tuples>(tuples))...);
+	return std::forward_as_tuple(std::get<index>(
+		std::forward<Tuples>(tuples))...);
 }
 
-template<::std::size_t... indices, class... Tuples>
-auto tuple_forward_as_zipped(::std::index_sequence<indices...>, Tuples&&... tuples)
+template<std::size_t... indices, class... Tuples>
+auto tuple_forward_as_zipped(std::index_sequence<indices...>, Tuples&&... tuples)
 { 
-	return ::std::make_tuple(tuple_forward_as_zipped<indices>(
-		::std::forward<Tuples>(tuples)...)...);
+	return std::make_tuple(tuple_forward_as_zipped<indices>(
+		std::forward<Tuples>(tuples)...)...);
 }
 }
 
@@ -35,6 +34,6 @@ auto tuple_forward_as_zipped(Tuples&&... tuples)
 
 	return internal::tuple_forward_as_zipped(
 		internal::index_sequence_for_tuple<Head_t<Tuples...>>,
-		::std::forward<Tuples>(tuples)...);
+		std::forward<Tuples>(tuples)...);
 }
 }
