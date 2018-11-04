@@ -2,7 +2,7 @@
 #include <es_util/algorithm.hpp>
 #include <vector>
 
-TEST(find_test, empty)
+TEST(algorithm_find_test, empty)
 {
 	std::vector<int> v;
 
@@ -13,7 +13,7 @@ TEST(find_test, empty)
 	EXPECT_EQ(p2, (v.end()));	
 }
 
-TEST(find_test, not_found)
+TEST(algorithm_find_test, not_found)
 {
 	std::vector<int> v{1, 2, 2, 4};
 
@@ -24,7 +24,7 @@ TEST(find_test, not_found)
 	EXPECT_EQ(p2, (v.end()));	
 }
 
-TEST(find_test, found)
+TEST(algorithm_find_test, found)
 {
 	std::vector<int> v{1, 2, 2, 4};
 

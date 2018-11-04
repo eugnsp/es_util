@@ -6,13 +6,13 @@
 namespace es_util
 {
 template<class T>
-struct Remove_cvref
+struct Remove_cvref_impl
 {
 	using Type = std::remove_cv_t<std::remove_reference_t<T>>;
 };
 
 template<class T>
-using Remove_cvref_t = typename Remove_cvref<T>::Type;
+using Remove_cvref = typename Remove_cvref_impl<T>::Type;
 
 //////////////////////////////////////////////////////////////////////////
 

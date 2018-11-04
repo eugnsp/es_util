@@ -22,7 +22,7 @@ Forward_iterator1 for_each_pair(Forward_iterator1 first, Forward_iterator2 last,
 	if (first == last)
 		return first;
 
-	auto next = ::std::next(first);
+	auto next = std::next(first);
 	while (next != last)
 		fn(*first++, *next++);
 

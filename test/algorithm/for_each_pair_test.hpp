@@ -2,88 +2,89 @@
 #include <es_util/algorithm.hpp>
 #include <vector>
 
-class For_each_pair_test : public testing::Test
+TEST(algorithm_for_each_pair_test, empty)
 {
-protected:
-	std::vector<int> in0{};
-	std::vector<int> in1{1};
-	std::vector<int> in2{1, 2};
-	std::vector<int> in5{1, 2, 3, 4, 5};	
-	std::vector<int> out;
-};
-
-class For_each_pair_n_test : public For_each_pair_test { };
-
-TEST_F(For_each_pair_test, empty)
-{
-	es_util::for_each_pair(in0.begin(), in0.end(),
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{};
 	
-	EXPECT_TRUE(out.empty());
+	int n = 0;
+	es_util::for_each_pair(v.begin(), v.end(), [&n](...) { ++n; });
+	
+	EXPECT_EQ(n, 0);
 }
 
-TEST_F(For_each_pair_test, one)
+TEST(algorithm_for_each_pair_test, one)
 {
-	es_util::for_each_pair(in1.begin(), in1.end(),
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1};
 	
-	EXPECT_TRUE(out.empty());
+	int n = 0;
+	es_util::for_each_pair(v.begin(), v.end(), [&n](...) { ++n; });
+	
+	EXPECT_EQ(n, 0);
 }
 
-TEST_F(For_each_pair_test, two)
+TEST(algorithm_for_each_pair_test, two)
 {
-	es_util::for_each_pair(in2.begin(), in2.end(),
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1, 2};
+	std::vector<std::pair<int, int>> o;
 	
-	ASSERT_EQ(out.size(), 2);
-	EXPECT_EQ(out[0], 1); EXPECT_EQ(out[1], 2);
+	es_util::for_each_pair(v.begin(), v.end(), [&o](int x, int y) { o.push_back({x, y}); });
+	
+	ASSERT_EQ(o.size(), 1);
+	EXPECT_EQ(o.front(), std::make_pair(1, 2));
 }
 
-TEST_F(For_each_pair_test, main)
+TEST(algorithm_for_each_pair_test, main)
 {
-	es_util::for_each_pair(in5.begin(), in5.end(),
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1, 2, 3, 4, 5};	
+	std::vector<std::pair<int, int>> o;
+
+	es_util::for_each_pair(v.begin(), v.end(), [&o](int x, int y) { o.push_back({x, y}); });
 	
-	ASSERT_EQ(out.size(), 8);
-	EXPECT_EQ(out[0], 1); EXPECT_EQ(out[1], 2);
-	EXPECT_EQ(out[2], 2); EXPECT_EQ(out[3], 3);
-	EXPECT_EQ(out[4], 3); EXPECT_EQ(out[5], 4);
-	EXPECT_EQ(out[6], 4); EXPECT_EQ(out[7], 5);
+	ASSERT_EQ(o.size(), 4);
+	EXPECT_EQ(o[0], std::make_pair(1, 2));
+	EXPECT_EQ(o[1], std::make_pair(2, 3));
+	EXPECT_EQ(o[2], std::make_pair(3, 4));
+	EXPECT_EQ(o[3], std::make_pair(4, 5));
 }
 
-TEST_F(For_each_pair_n_test, negative)
+TEST(algorithm_for_each_pair_n_test, negative_zero)
 {
-	es_util::for_each_pair_n(in5.begin(), -1,
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1, 2, 3, 4, 5};	
 	
-	EXPECT_TRUE(out.empty());
+	int n = 0;
+	es_util::for_each_pair_n(v.begin(), -1, [&n](...) { ++n; });
+	
+	EXPECT_EQ(n, 0);
 }
 
-TEST_F(For_each_pair_n_test, zero)
+TEST(algorithm_for_each_pair_n_test, zero)
 {
-	es_util::for_each_pair_n(in0.begin(), 0,
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1, 2, 3, 4, 5};	
 	
-	EXPECT_TRUE(out.empty());
+	int n = 0;
+	es_util::for_each_pair_n(v.begin(), 0, [&n](...) { ++n; });
+	
+	EXPECT_EQ(n, 0);
 }
 
-TEST_F(For_each_pair_n_test, main)
+TEST(algorithm_for_each_pair_n_test, main)
 {
-	es_util::for_each_pair_n(in5.begin(), 4,
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	std::vector<int> v{1, 2, 3, 4, 5};	
+	std::vector<std::pair<int, int>> o;
+
+	es_util::for_each_pair_n(v.begin(), 4, [&o](int x, int y) { o.push_back({x, y}); });
 	
-	ASSERT_EQ(out.size(), 8);
-	EXPECT_EQ(out[0], 1); EXPECT_EQ(out[1], 2);
-	EXPECT_EQ(out[2], 2); EXPECT_EQ(out[3], 3);
-	EXPECT_EQ(out[4], 3); EXPECT_EQ(out[5], 4);
-	EXPECT_EQ(out[6], 4); EXPECT_EQ(out[7], 5);
+	ASSERT_EQ(o.size(), 4);
+	EXPECT_EQ(o[0], std::make_pair(1, 2));
+	EXPECT_EQ(o[1], std::make_pair(2, 3));
+	EXPECT_EQ(o[2], std::make_pair(3, 4));
+	EXPECT_EQ(o[3], std::make_pair(4, 5));
 	
-	out.clear();
-	es_util::for_each_pair_n(in5.begin() + 1, 3,
-		[this](int x, int y) { out.push_back(x); out.push_back(y); });
+	o.clear();
+	es_util::for_each_pair_n(v.begin() + 1, 3, [&o](int x, int y) { o.push_back({x, y}); });
 	
-	ASSERT_EQ(out.size(), 6);
-	EXPECT_EQ(out[0], 2); EXPECT_EQ(out[1], 3);
-	EXPECT_EQ(out[2], 3); EXPECT_EQ(out[3], 4);
-	EXPECT_EQ(out[4], 4); EXPECT_EQ(out[5], 5);
+	ASSERT_EQ(o.size(), 3);
+	EXPECT_EQ(o[0], std::make_pair(2, 3));
+	EXPECT_EQ(o[1], std::make_pair(3, 4));
+	EXPECT_EQ(o[2], std::make_pair(4, 5));
 }

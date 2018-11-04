@@ -2,7 +2,7 @@
 #include <es_util/algorithm.hpp>
 #include <vector>
 
-TEST(sort2_test, main)
+TEST(algorithm_sort2_test, main)
 {
 	int x1 = 1;
 	int x2 = 2;
@@ -19,7 +19,7 @@ TEST(sort2_test, main)
 	EXPECT_EQ(x4, 2);
 }
 
-TEST(sort2_test, stable)
+TEST(algorithm_sort2_test, stability)
 {
 	struct S
 	{

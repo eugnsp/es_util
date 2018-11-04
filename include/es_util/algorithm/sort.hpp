@@ -8,7 +8,7 @@ namespace es_util
 template<typename T, class Compare>
 void sort2(T& x, T&y, Compare cmp)
 {
-	using ::std::swap;
+	using std::swap;
 	if (cmp(y, x))
 		swap(x, y);
 }
@@ -17,6 +17,6 @@ void sort2(T& x, T&y, Compare cmp)
 template<typename T>
 void sort2(T& x, T&y)
 {
-	::es_util::sort2(x, y, std::less<>{});
+	es_util::sort2(x, y, std::less<>{});
 }
 }
