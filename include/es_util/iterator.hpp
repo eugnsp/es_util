@@ -44,13 +44,13 @@ namespace es_util
 template<class... Iterators>
 class Zip_iterator
 {
-private:
-	using Ref_tuple = std::tuple<std::reference_wrapper<typename std::iterator_traits<Iterators>::value_type...>>;
+// private:
+// 	using Ref_tuple = std::tuple<std::reference_wrapper<typename std::iterator_traits<Iterators>::value_type>...>;
 
 public:
 	using value_type = std::tuple<typename std::iterator_traits<Iterators>::value_type...>;
-	using reference = Ref_tuple&;
-	using pointer = Ref_tuple*;
+	using reference = std::tuple<typename std::iterator_traits<Iterators>::reference...>;
+	using pointer = std::tuple<typename std::iterator_traits<Iterators>::pointer...>;
 	using difference_type = std::common_type_t<typename std::iterator_traits<Iterators>::difference_type...>;
 	using iterator_category = std::common_type_t<typename std::iterator_traits<Iterators>::iterator_category...>;
 
@@ -60,7 +60,7 @@ public:
 
 	reference operator*() const
 	{
-		return util::tuple_map([](auto it) -> decltype(auto) { return *it; }, its_);
+		return es_util::tuple_map([](auto it) -> decltype(auto) { return *it; }, its_);
 	}
 
 	bool operator<(const Zip_iterator& other) const
@@ -140,19 +140,19 @@ public:
 
 private:
 	std::tuple<Iterators...> its_;
-	Ref_tuple refs_;
+//	Ref_tuple refs_;
 };
 }
 
-// namespace std
-// {
-// template<class... Iterators>
-// void iter_swap(es::util::Zip_iterator<Iterators...> it1, es::util::Zip_iterator<Iterators...> it2)
-// {
-// 	es::util::tuple_for_each([](auto it1, auto it2)
-// 		{
-// 			std::iter_swap(it1, it2);
-// 		}, it1.iterators(), it2.iterators());
-// }
-//}
+namespace std
+{
+template<class... Iterators>
+void iter_swap(es_util::Zip_iterator<Iterators...> it1, es_util::Zip_iterator<Iterators...> it2)
+{
+	es_util::tuple_for_each([](auto it1, auto it2)
+		{
+			std::iter_swap(it1, it2);
+		}, it1.iterators(), it2.iterators());
+}
+}
 

@@ -33,7 +33,7 @@ auto tuple_forward_as_zipped(Tuples&&... tuples)
  	static_assert(all_same<tuple_size<Tuples>...>, "All tuples must have the same size");
 
 	return internal::tuple_forward_as_zipped(
-		internal::index_sequence_for_tuple<Head_t<Tuples...>>,
+		internal::index_sequence_for_tuple<Head<Tuples...>>,
 		std::forward<Tuples>(tuples)...);
 }
 }
