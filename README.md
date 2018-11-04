@@ -1,4 +1,6 @@
-# Library es_util (namespace `es::util::`)
+# Utilities library
+
+Namespace: `es_util`
 
 ## Algorithms
 
