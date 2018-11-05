@@ -1,5 +1,6 @@
 #pragma once
-#include <es_util/array/core.hpp>
+#include <es_util/array/make_array.hpp>
+
 #include <array>
 #include <cstddef>
 #include <type_traits>
@@ -10,13 +11,13 @@ namespace es_util
 namespace internal
 {
 template<typename Array1, typename Array2, std::size_t... indices1, std::size_t... indices2>
-constexpr auto array_cat_impl(Array1&& arr1, Array2&& arr2,
-	std::index_sequence<indices1...>, std::index_sequence<indices2...>)
+constexpr auto array_cat_impl(Array1&& arr1, Array2&& arr2, std::index_sequence<indices1...>,
+							  std::index_sequence<indices2...>)
 {
 	return es_util::make_array(std::get<indices1>(std::forward<Array1>(arr1))...,
-		std::get<indices2>(::std::forward<Array2>(arr2))...);
+							   std::get<indices2>(std::forward<Array2>(arr2))...);
 }
-}
+} // namespace internal
 
 template<typename Array, typename... Arrays>
 constexpr auto array_cat(Array&& arr, Arrays&&... arrs)
@@ -25,9 +26,10 @@ constexpr auto array_cat(Array&& arr, Arrays&&... arrs)
 		return std::forward<Array>(arr);
 	else if constexpr (sizeof...(Arrays) == 1)
 		return internal::array_cat_impl(std::forward<Array>(arr), std::forward<Arrays>(arrs)...,
-			std::make_index_sequence<array_size<Array>>{},
-			std::make_index_sequence<array_size<Arrays...>>{});
+										std::make_index_sequence<array_size<Array>>{},
+										std::make_index_sequence<array_size<Arrays...>>{});
 	else
-		return es_util::array_cat(std::forward<Array>(arr), array_cat(std::forward<Arrays>(arrs)...));
+		return es_util::array_cat(std::forward<Array>(arr),
+								  array_cat(std::forward<Arrays>(arrs)...));
 }
-}
+} // namespace es_util

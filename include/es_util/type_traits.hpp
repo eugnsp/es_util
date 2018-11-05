@@ -2,6 +2,7 @@
 #include <es_util/type_traits/all_any_none.hpp>
 #include <es_util/type_traits/index_of.hpp>
 #include <es_util/type_traits/nth.hpp>
+
 #include <cstddef>
 #include <type_traits>
 #include <utility>
@@ -75,7 +76,7 @@ struct All_same : std::bool_constant<all_same<values...>> { };
 //////////////////////////////////////////////////////////////////////////
 
 template<std::size_t index>
-using Index_t = std::integral_constant<std::size_t, index>;
+using Index = std::integral_constant<std::size_t, index>;
 
 //////////////////////////////////////////////////////////////////////////
 

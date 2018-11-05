@@ -7,6 +7,8 @@
 #include "algorithm/sort_test.hpp"
 
 #include "array/core_test.hpp"
+#include "array/sum_test.hpp"
+#include "array/to_array_test.hpp"
 
 #include "string/ends_with_test.hpp"
 

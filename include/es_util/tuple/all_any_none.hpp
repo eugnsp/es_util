@@ -1,6 +1,8 @@
 #pragma once
+
 #include <es_util/tuple/core.hpp>
 #include <es_util/tuple/forward_as_zipped.hpp>
+
 #include <cstddef>
 #include <tuple>
 #include <type_traits>
@@ -27,9 +29,9 @@ constexpr bool tuple_none_of(Pred pred, Tuple&& tuple, std::index_sequence<indic
 {
 	return (... && !pred(std::get<indices>(std::forward<Tuple>(tuple))));
 }
-}
+} // namespace internal
 
-// Checks whether a predicate returns `true` for all 
+// Checks whether a predicate returns `true` for all
 // first, second, etc. elements of a list tuples
 template<class Pred, class... Tuples>
 constexpr bool tuple_all_of(Pred pred, Tuples&&... tuples)
@@ -38,10 +40,10 @@ constexpr bool tuple_all_of(Pred pred, Tuples&&... tuples)
 		return true;
 	else if constexpr (sizeof...(Tuples) == 1)
 		return internal::tuple_all_of(pred, std::forward<Tuples>(tuples)...,
-			internal::index_sequence_for_tuple<Tuples...>);
+									  internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_all_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
+							tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 
 // Checks whether a predicate returns `true` for any
@@ -53,10 +55,10 @@ constexpr bool tuple_any_of(Pred pred, Tuples&&... tuples)
 		return false;
 	else if constexpr (sizeof...(Tuples) == 1)
 		return internal::tuple_any_of(pred, std::forward<Tuples>(tuples)...,
-			internal::index_sequence_for_tuple<Tuples...>);
+									  internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_any_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
+							tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
 
 // Checks whether a predicate returns `true` for none
@@ -68,9 +70,9 @@ constexpr bool tuple_none_of(Pred pred, Tuples&&... tuples)
 		return true;
 	else if constexpr (sizeof...(Tuples) == 1)
 		return internal::tuple_none_of(pred, std::forward<Tuples>(tuples)...,
-			internal::index_sequence_for_tuple<Tuples...>);
+									   internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_none_of(internal::forward_with_apply(pred),
-			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
+							 tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
-}
+} // namespace es_util

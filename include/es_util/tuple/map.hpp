@@ -16,12 +16,12 @@ constexpr auto tuple_map(Fn&& fn, Tuple&& tuple, std::index_sequence<indices...>
 {
 	// See: https://stackoverflow.com/questions/51727961/what-should-tuple-map-return
 
-	using Ret = std::tuple<std::invoke_result_t
-		<Fn, decltype(std::get<indices>(std::forward<Tuple>(tuple)))>...>;
+	using Ret = std::tuple<
+		std::invoke_result_t<Fn, decltype(std::get<indices>(std::forward<Tuple>(tuple)))>...>;
 
 	return Ret{fn(std::get<indices>(std::forward<Tuple>(tuple)))...};
 }
-}
+} // namespace internal
 
 // Applies a function object to first, second, etc. elements
 // of a list tuples and returns a tuple of results
@@ -35,9 +35,9 @@ constexpr auto tuple_map(Fn&& fn, Tuples&&... tuples)
 			return std::make_tuple();
 		else
 			return internal::tuple_map(std::forward<Fn>(fn), std::forward<Tuples>(tuples)...,
-				internal::index_sequence_for_tuple<Tuples...>);
+									   internal::index_sequence_for_tuple<Tuples...>);
 	else
 		return tuple_map(internal::forward_with_apply(std::forward<Fn>(fn)),
-			tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
+						 tuple_forward_as_zipped(std::forward<Tuples>(tuples)...));
 }
-}
+} // namespace es_util

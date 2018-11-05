@@ -17,4 +17,4 @@ Input_iterator1 find(Input_iterator1 first, Input_iterator2 last, const T& value
 {
 	return es_util::find_if(first, last, [&value](const auto& v) { return v == value; });
 }
-}
+} // namespace es_util

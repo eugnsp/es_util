@@ -11,7 +11,7 @@ namespace es_util
 //  func - the function object to be applied, the signature should be
 //         equivalent to the following: void func(T& a, T& b);
 //         the type T must be such that an object of type Fw_it_begin
-//         can be dereferenced and then implicitly converted to T. 
+//         can be dereferenced and then implicitly converted to T.
 //
 // Return value:
 //  the iterator pointing to the last element in the range,
@@ -50,4 +50,4 @@ Forward_iterator for_each_pair_n(Forward_iterator first, N n, Fn&& fn)
 
 	return first;
 }
-}
+} // namespace es_util

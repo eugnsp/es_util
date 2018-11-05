@@ -50,4 +50,4 @@ bool none_of_pairs(Forward_iterator first, Forward_iterator last, Unary_predicat
 
 	return true;
 }
-}
+} // namespace es_util
