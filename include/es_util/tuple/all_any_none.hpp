@@ -1,5 +1,4 @@
 #pragma once
-
 #include <es_util/tuple/core.hpp>
 #include <es_util/tuple/forward_as_zipped.hpp>
 
