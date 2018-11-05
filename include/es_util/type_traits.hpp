@@ -76,7 +76,8 @@ struct All_same : std::bool_constant<all_same<values...>> { };
 //////////////////////////////////////////////////////////////////////////
 
 template<std::size_t index>
-using Index = std::integral_constant<std::size_t, index>;
+struct Index : std::integral_constant<std::size_t, index>
+{};
 
 //////////////////////////////////////////////////////////////////////////
 
