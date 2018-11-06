@@ -44,20 +44,6 @@ inline constexpr bool same_values_v = Same_values<T, t_value, t_values...>::valu
 
 //////////////////////////////////////////////////////////////////////////
 
-template<typename T, std::size_t n, T value, T... values>
-struct Sum_first_n_values :
-	std::integral_constant<T, value + Sum_first_n_values<T, n - 1, values...>::value>
-{};
-
-template<typename T, T value, T... values>
-struct Sum_first_n_values<T, 1, value, values...> : std::integral_constant<T, value>
-{};
-
-template<typename T, std::size_t n, T value, T... values>
-inline constexpr T sum_first_n_values_v = Sum_first_n_values<T, n, value, values...>::value;
-
-//////////////////////////////////////////////////////////////////////////
-
 // Returns the the first value in the pack
 template<auto value, auto...>
 struct First : std::integral_constant<decltype(value), value>

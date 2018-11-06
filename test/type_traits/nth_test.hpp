@@ -1,7 +1,7 @@
 #pragma once
 #include <es_util/type_traits.hpp>
 
-TEST(type_traits_nth, main)
+TEST(type_traits_nth_test, main)
 {
 	testing::StaticAssertTypeEq<es_util::Nth<0, int>, int>();
 

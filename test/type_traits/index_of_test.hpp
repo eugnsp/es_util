@@ -1,7 +1,7 @@
 #pragma once
 #include <es_util/type_traits.hpp>
 
-TEST(type_traits_index_of, main)
+TEST(type_traits_index_of_test, main)
 {
 	EXPECT_EQ((es_util::index_of<int /*, empty list */>), 0);
 

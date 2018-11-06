@@ -1,7 +1,7 @@
 #pragma once
 #include <es_util/type_traits.hpp>
 
-TEST(type_traits_all, main)
+TEST(type_traits_all_test, main)
 {
 	EXPECT_TRUE(es_util::all<>);
 
@@ -14,7 +14,7 @@ TEST(type_traits_all, main)
 	EXPECT_TRUE((es_util::all<true, true, true>));
 }
 
-TEST(type_traits_any, main)
+TEST(type_traits_any_test, main)
 {
 	EXPECT_FALSE(es_util::any<>);
 
@@ -27,7 +27,7 @@ TEST(type_traits_any, main)
 	EXPECT_TRUE((es_util::any<true, true, true>));
 }
 
-TEST(type_traits_none, main)
+TEST(type_traits_none_test, main)
 {
 	EXPECT_TRUE(es_util::none<>);
 
