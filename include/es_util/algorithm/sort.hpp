@@ -17,6 +17,6 @@ void sort2(T& x, T& y, Compare cmp)
 template<typename T>
 void sort2(T& x, T& y)
 {
-	es_util::sort2(x, y, std::less<>{});
+	sort2(x, y, std::less<>{});
 }
 } // namespace es_util

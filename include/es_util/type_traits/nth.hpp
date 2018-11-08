@@ -17,6 +17,12 @@ struct Nth_impl<0, T, Ts...>
 {
 	using Type = T;
 };
+
+template<typename T, typename... Ts>
+struct Head_impl
+{
+	using Type = T;
+};
 } // namespace internal
 
 // Returns the n-th type in the pack
@@ -24,6 +30,6 @@ template<std::size_t n, class... Ts>
 using Nth = typename internal::Nth_impl<n, Ts...>::Type;
 
 // Returns the first type in the pack
-template<typename T, typename... Ts>
-using Head = T;
+template<typename... Ts>
+using Head = typename internal::Head_impl<Ts...>::Type;
 } // namespace es_util

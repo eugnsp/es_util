@@ -1,6 +1,5 @@
 #pragma once
 #include <es_util/type_traits.hpp>
-
 #include <cassert>
 #include <functional>
 #include <iterator>
@@ -14,8 +13,7 @@ namespace es_util
 template<typename T = void, typename Input_iterator, class Binary_operation>
 auto accumulate_non_empty(Input_iterator first, Input_iterator last, Binary_operation op)
 {
-	using Value =
-		es_util::Non_void_t_or<T, typename std::iterator_traits<Input_iterator>::value_type>;
+	using Value = Non_void_t_or<T, typename std::iterator_traits<Input_iterator>::value_type>;
 
 	assert(first != last);
 	Value init = std::move(*first);
@@ -26,6 +24,6 @@ auto accumulate_non_empty(Input_iterator first, Input_iterator last, Binary_oper
 template<typename T = void, typename Input_iterator>
 auto accumulate_non_empty(Input_iterator first, Input_iterator last)
 {
-	return es_util::accumulate_non_empty<T>(first, last, std::plus<>{});
+	return accumulate_non_empty<T>(first, last, std::plus<>{});
 }
 } // namespace es_util

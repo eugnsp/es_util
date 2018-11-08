@@ -1,6 +1,5 @@
 #pragma once
 #include <es_util/algorithm/find.hpp>
-
 #include <functional>
 
 namespace es_util
@@ -13,7 +12,7 @@ template<class Forward_iterator1, class Forward_iterator2, class Forward_iterato
 bool is_circ_permutation(Forward_iterator1 first1, Forward_iterator2 last1,
 						 Forward_iterator3 first2, Binary_predicate pred)
 {
-	const auto equal = es_util::find_if(
+	const auto equal = find_if(
 		first1, last1, [&pred, &first2](const auto& v) { return pred(v, *first2); });
 
 	if (equal == last1)
@@ -40,6 +39,6 @@ template<class Forward_iterator1, class Forward_iterator2, class Forward_iterato
 bool is_circ_permutation(Forward_iterator1 first1, Forward_iterator2 last1,
 						 Forward_iterator3 first2)
 {
-	return es_util::is_circ_permutation(first1, last1, first2, std::equal_to<>{});
+	return is_circ_permutation(first1, last1, first2, std::equal_to<>{});
 }
 } // namespace es_util

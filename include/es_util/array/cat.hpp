@@ -1,6 +1,5 @@
 #pragma once
 #include <es_util/array/make_array.hpp>
-
 #include <array>
 #include <cstddef>
 #include <type_traits>
@@ -14,8 +13,8 @@ template<typename Array1, typename Array2, std::size_t... indices1, std::size_t.
 constexpr auto array_cat_impl(Array1&& arr1, Array2&& arr2, std::index_sequence<indices1...>,
 							  std::index_sequence<indices2...>)
 {
-	return es_util::make_array(std::get<indices1>(std::forward<Array1>(arr1))...,
-							   std::get<indices2>(std::forward<Array2>(arr2))...);
+	return make_array(std::get<indices1>(std::forward<Array1>(arr1))...,
+					  std::get<indices2>(std::forward<Array2>(arr2))...);
 }
 } // namespace internal
 
@@ -29,7 +28,6 @@ constexpr auto array_cat(Array&& arr, Arrays&&... arrs)
 										std::make_index_sequence<array_size<Array>>{},
 										std::make_index_sequence<array_size<Arrays...>>{});
 	else
-		return es_util::array_cat(std::forward<Array>(arr),
-								  array_cat(std::forward<Arrays>(arrs)...));
+		return array_cat(std::forward<Array>(arr), array_cat(std::forward<Arrays>(arrs)...));
 }
 } // namespace es_util
