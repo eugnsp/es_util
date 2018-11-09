@@ -8,24 +8,6 @@
 
 namespace es_util
 {
-// Returns size in bytes in a human readable form
-std::string size_string(std::size_t size)
-{
-	std::stringstream str;
-
-	if (size < 1'024U)
-		str << size << " B";
-	else
-	{
-		str << std::fixed << std::setprecision(1);
-		if (size < 1'048'576U)
-			str << size / 1'024. << " KB";
-		else
-			str << size / 1'048'576. << " MB";
-	}
-	return str.str();
-}
-
 std::string compiler_and_mkl_info()
 {
 	std::stringstream info;

@@ -61,8 +61,5 @@ auto average(Iter begin, const Iter end, Function func = Function{})
 	return result;
 }
 
-// Returns size in bytes in a human readable form
-std::string size_string(std::size_t size);
-
 std::string compiler_and_mkl_info();
 }

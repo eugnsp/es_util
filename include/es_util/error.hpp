@@ -1,64 +1,57 @@
 #pragma once
 #include <string>
 #include <sstream>
-#include <stdexcept>
 
 namespace es_util
 {
-	// TO DO : Rename class
-	class Error
+// Error reporting class
+class Error
+{
+public:
+	Error() = default;
+
+	// Checks if error occured
+	operator bool() const
 	{
-	public:
-		explicit Error(const std::string& title) : title_(title)
-		{ }
-
-		template<typename T>
-		Error& operator<<(const T& arg)
-		{
-			ss_ << arg;
-			return *this;
-		}
-
-		Error& operator<<(void(*func)(Error&))
-		{
-			func(*this);
-			return *this;
-		}
-
-		std::string string() const
-		{
-			if (is_ok_)
-				return title_ + ": OK\n";
-			else
-				return title_ + " failed\n" + ss_.str() + '\n';
-		}
-
-		bool is_OK() const
-		{
-			return is_ok_;
-		}
-
-		void set_error_flag()
-		{
-			is_ok_ = false;
-		}
-
-		void throw_if_error() const
-		{
-			if (!is_ok_)
-				throw std::runtime_error(string());
-		}
-
-		friend void error_flag(Error& err);
-
-	private:
-		bool is_ok_ = true;
-		std::stringstream ss_;
-		std::string title_;
-	};
-
-	inline void error_flag(Error& err)
-	{
-		err.is_ok_ = false;
+		return error_;
 	}
-}
+
+	// Appends values to the error message and sets the error flag
+	template<typename... Ts>
+	void append(const Ts&... values)
+	{
+		(message_ << ... << values);
+		error_ = true;
+	}
+
+	// Appends values to the error message followed by a line break and sets the error flag
+	template<typename... Ts>
+	void append_ln(const Ts&... values)
+	{
+		append(values..., '\n');
+	}
+
+	// Returns the error message
+	std::string message() const
+	{
+		return message_.str();
+	}
+
+	// Resets the error flag
+	void reset_error_flag()
+	{
+		error_ = false;
+	}
+
+	// Resets the error flag and clears the error message
+	void clear()
+	{
+		reset_error_flag();
+		message_.str("");
+	}
+
+private:
+	bool error_ = false;
+	std::stringstream message_;
+};
+} // namespace es_util

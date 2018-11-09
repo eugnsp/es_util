@@ -1,5 +1,6 @@
 #pragma once
 #include <es_util/algorithm/find.hpp>
+
 #include <functional>
 
 namespace es_util

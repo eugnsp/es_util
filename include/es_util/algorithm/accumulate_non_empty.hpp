@@ -1,5 +1,6 @@
 #pragma once
 #include <es_util/type_traits.hpp>
+
 #include <cassert>
 #include <functional>
 #include <iterator>
