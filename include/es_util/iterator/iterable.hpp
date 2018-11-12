@@ -3,20 +3,20 @@
 
 namespace es_util
 {
-template<class Iter_begin, class Iter_end = Iter_begin>
+template<class Iterator_begin, class Iterator_end = Iterator_begin>
 class Iterable
 {
 public:
-	Iterable(Iter_begin begin, Iter_end end) :
+	Iterable(Iterator_begin begin, Iterator_end end) :
 		begin_(std::move(begin)), end_(std::move(end))
-	{ }
+	{}
 
-	Iter_begin begin() const
+	Iterator_begin begin() const
 	{
 		return begin_;
 	}
 
-	Iter_end end() const
+	Iterator_end end() const
 	{
 		return end_;
 	}
@@ -27,7 +27,7 @@ public:
 	}
 
 private:
-	const Iter_begin begin_;
-	const Iter_end end_;
+	const Iterator_begin begin_;
+	const Iterator_end end_;
 };
-}
+} // namespace es_util
