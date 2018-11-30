@@ -12,7 +12,7 @@ bool ends_with(std::string_view str, std::string_view ending, Binary_predicate p
 		   && std::equal(ending.rbegin(), ending.rend(), str.rbegin(), pred);
 }
 
-bool ends_with(std::string_view str, std::string_view ending)
+inline bool ends_with(std::string_view str, std::string_view ending)
 {
 	return es_util::ends_with(str, ending, std::equal_to<>{});
 }

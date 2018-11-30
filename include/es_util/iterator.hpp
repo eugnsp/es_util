@@ -2,6 +2,7 @@
 #include <es_util/tuple.hpp>
 #include <es_util/iterator/iterable.hpp>
 #include <es_util/iterator/smart_ptr_iterator.hpp>
+#include <es_util/iterator/transform_iterator.hpp>
 #include <iterator>
 #include <type_traits>
 #include <cassert>
@@ -142,6 +143,7 @@ private:
 	std::tuple<Iterators...> its_;
 //	Ref_tuple refs_;
 };
+
 }
 
 namespace std

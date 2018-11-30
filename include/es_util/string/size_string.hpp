@@ -5,7 +5,7 @@
 namespace es_util
 {
 // Returns size in bytes in a human readable form
-std::string size_string(std::size_t size)
+inline std::string size_string(std::size_t size)
 {
 	char size_buf[100];
 
