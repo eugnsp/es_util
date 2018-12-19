@@ -7,11 +7,11 @@
 ```cpp
 namespace es_util
 {
-template<class Fw_it, class Fw_it_end, class Fn>
-Fw_it for_each_pair(Fw_it first, Fw_it_end last, Fn);
+template<class Forward_iterator1, class Forward_iterator2, class Fn>
+Fw_it for_each_pair(Forward_iterator1 first, Forward_iterator2 last, Fn);
 
-template<class Fw_it, typename N, class Fn>
-Fw_it for_each_pair_n(Fw_it first, N, Fn)
+template<class Forward_iterator, typename N, class Fn>
+Fw_it for_each_pair_n(Forward_iterator first, N, Fn)
 }
 ```
 

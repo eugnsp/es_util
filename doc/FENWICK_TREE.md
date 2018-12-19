@@ -15,7 +15,7 @@ class Fenwick_tree;
 
 ---
 
-## Member types:
+## Member types
 
 ```cpp
 using Value = Value_;
@@ -23,7 +23,7 @@ using Size = Size_;
 ```
 ---
 
-## Member functions:
+## Member functions
 
 ### `Fenwick_tree`
 **Constructors**

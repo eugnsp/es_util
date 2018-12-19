@@ -8,8 +8,8 @@ Header: `<es_util/algorithm.hpp>`
 **Applies the function object to adjacent pairs of elements in the range**
 
 ```cpp
-template<class Fw_it, class Fw_it_end, class Fn>
-Fw_it for_each_pair(Fw_it first, Fw_it_end last, Fn fn);
+template<class Forward_iterator1, class Forward_iterator2, class Fn>
+Fw_it for_each_pair(Forward_iterator1 first, Forward_iterator2 last, Fn fn);
 ```
 
 Applies the given function object `fn` to adjacent pairs of elements in the range [`first`, `last`), in order.
@@ -35,8 +35,8 @@ for_each_pair(v.begin(), v.end(),
 **Applies the function object to adjacent pairs of elements in the range**
 
 ```cpp
-template<class Fw_it, typename N, class Fn>
-Fw_it for_each_pair_n(Fw_it first, N n, Fn fn)
+template<class Forward_iterator, typename N, class Fn>
+Fw_it for_each_pair_n(Forward_iterator first, N n, Fn fn)
 ```
 
 Applies the given function object `fn` to adjacent pairs of elements in the range [`first`, `first + n`), in order.
