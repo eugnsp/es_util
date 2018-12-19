@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cstdlib>
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -185,7 +186,7 @@ int main()
 
 	TEST(lower_upper_bounds_zeros);
 	TEST(lower_upper_bounds);
-
+	
 	std::cout << "All OK" << std::endl;
 	return 0;
 }

@@ -14,37 +14,61 @@ template<typename T>
 class Fenwick_tree
 {
 public:
-	Fenwick_tree(std::size_t size) :
-		data_(size)
+	using Value = T;
+	
+public:
+	// Constructs an empty Fenwick tree
+	Fenwick_tree() = default;
+
+	// Constructs a Fenwick tree of the given size initialized with zero values
+	Fenwick_tree(std::size_t size) : data_(size)
 	{
-		assert(data_.size() > 0);
+		assert(!data_.empty());
 	}
 
+	// Constructs a Fenwick tree with the contents of the given range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
-	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) :
-		data_{first, last}
+	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_{first, last}
 	{
-		assert(data_.size() > 0);
-
-		for (std::size_t index = 0; index < size(); ++index)
-			if (const auto p = parent(index); p < size())
-				data_[p] += data_[index];
+		assert(!data_.empty());
+		construct_in_place();
 	}
 
-	Fenwick_tree(std::initializer_list<T> list) :
-		Fenwick_tree(list.begin(), list.end())
+	// Constructs a Fenwick tree with the contents of the given initializer list
+	Fenwick_tree(std::initializer_list<Value> list) : Fenwick_tree(list.begin(), list.end())
 	{}
+	
+	// Replaces the contents with the given number of zero values
+	void reset(std::size_t size)
+	{
+		assert(size > 0);
+		data_.assign(size, Value{});
+	}
+
+	// Replaces the contents with copies of values in the given range [first, last)
+	template<class Input_iterator1, class Input_iterator2>
+	void reset(Input_iterator1 first, Input_iterator2 last)
+	{
+		assert(first != last);
+		data_.assign(first, last);
+		construct_in_place();
+	}
 
 	std::size_t size() const
 	{
 		return data_.size();
 	}
 
+	bool is_empty() const
+	{
+		return data_.empty();
+	}
+
 	//////////////////////////////////////////////////////////////////////
 	/** Element access */
 
 	// Returns the element with the given index
-	T operator[](std::size_t index) const
+	Value operator[](std::size_t index) const
 	{
 		assert(index < size());
 
@@ -54,9 +78,9 @@ public:
 
 		return value;
 	}
-
+	
 	// Returns the sum of elements in the given closed range [first, last]
-	T sum(std::size_t first, std::size_t last) const
+	Value sum(std::size_t first, std::size_t last) const
 	{
 		assert(first <= last && last < size());
 
@@ -66,7 +90,7 @@ public:
 		while (last > first)
 		{
 			sum += data_[--last];
-		 	last = child(last);
+			last = child(last);
 		}
 
 		while (first != last)
@@ -80,20 +104,22 @@ public:
 
 	// Returns the prefix sum for the element with the given index,
 	// i.e. the sum of elements in the closed range [0, index]
-	T sum(std::size_t index) const
+	Value sum(std::size_t index) const
 	{
 		return sum(0, index);
 	}
 
-	T sum() const
+	// Returns the sum of all elements; the container should be non-empty
+	Value sum() const
 	{
+		assert(!is_empty());
 		return sum(size() - 1);
 	}
 
 	// Returns the smallest index such that the prefix sum is not less than the given value,
-	// or the container's size if no such index exists; all elements in the container should be
-	// non-negative, so that the sequence of all prefix sums is non-decreasing
-	std::size_t lower_bound(T value) const
+	// or the container's size if no such index exists; the container should be non-empty and all
+	// elements should be non-negative, so that the sequence of all prefix sums is non-decreasing
+	std::size_t lower_bound(Value value) const
 	{
 		std::size_t index = 0;
 		for (auto mask = msb_size_mask(); mask != 0; mask >>= 1)
@@ -107,9 +133,9 @@ public:
 	}
 
 	// Returns the smallest index such that the prefix sum is greater than the given value,
-	// or the container's size if no such index exists; all elements in the container should be
-	// non-negative, so that the sequence of all prefix sums is non-decreasing
-	std::size_t upper_bound(T value) const
+	// or the container's size if no such index exists; the container should be non-empty and all
+	// elements should be non-negative, so that the sequence of all prefix sums is non-decreasing
+	std::size_t upper_bound(Value value) const
 	{
 		std::size_t index = 0;
 		for (auto mask = msb_size_mask(); mask != 0; mask >>= 1)
@@ -126,7 +152,7 @@ public:
 	/** Modifiers */
 
 	// Adds the given value to the element with the given index
-	void add(std::size_t index, const T& value)
+	void add(std::size_t index, const Value& value)
 	{
 		assert(index < size());
 		for (; index < size(); index = parent(index))
@@ -134,7 +160,7 @@ public:
 	}
 
 	// Sets the value of the element with the given index
-	void set(std::size_t index, const T& value)
+	void set(std::size_t index, const Value& value)
 	{
 		add(index, value - (*this)[index]);
 	}
@@ -160,11 +186,19 @@ private:
 		return index | (index + 1);
 	}
 
+	// Converts (data) array into a Fenwick tree in-place
+	void construct_in_place()
+	{
+		for (std::size_t index = 0; index < size(); ++index)
+			if (const auto p = parent(index); p < size())
+				data_[p] += data_[index];
+	}
+
 private:
-	std::vector<T> data_;
+	std::vector<Value> data_;
 };
 
 template<class Input_iterator1, class Input_iterator2>
 Fenwick_tree(Input_iterator1, Input_iterator2) ->
 	Fenwick_tree<typename std::iterator_traits<Input_iterator1>::value_type>;
-}
+} // namespace es_util
