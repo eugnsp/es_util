@@ -8,10 +8,10 @@ namespace es_util
 //
 // Parameters:
 //  first, last - the range to apply the function to,
-//  func - the function object to be applied, the signature should be
-//         equivalent to the following: void func(T& a, T& b);
-//         the type T must be such that an object of type Fw_it_begin
-//         can be dereferenced and then implicitly converted to T.
+//  fn - the function object to be applied, the signature should be
+//       equivalent to the following: void fn(T& a, T& b);
+//       the type T must be such that an object of type Forward_iterator1
+//       can be dereferenced and then implicitly converted to T.
 //
 // Return value:
 //  the iterator pointing to the last element in the range,

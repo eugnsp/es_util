@@ -64,5 +64,5 @@ int main()
 	none_of_pairs_main();
 
 	std::cout << "OK.\n";
-	return 0;
+	return EXIT_SUCCESS;
 }

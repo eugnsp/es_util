@@ -4,7 +4,8 @@ project(es_util_test)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-add_compile_options(-Wall -Wextra -Wpedantic -D_DEBUG)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_compile_options(-Wall -Wextra -Wpedantic -D_DEBUG -g -O0)
 
 add_library(es_util INTERFACE IMPORTED)
 set_target_properties(es_util PROPERTIES

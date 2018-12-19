@@ -10,9 +10,9 @@ void find_empty()
 
 	const auto p1 = es_util::find(v.begin(), v.end(), 1);
 	const auto p2 = es_util::find_if(v.begin(), v.end(), [](int) { return true; });
-		
+
 	assert(p1 == v.end());
-	assert(p2 == v.end());	
+	assert(p2 == v.end());
 }
 
 void find_not_found()
@@ -21,9 +21,9 @@ void find_not_found()
 
 	const auto p1 = es_util::find(v.begin(), v.end(), 3);
 	const auto p2 = es_util::find_if(v.begin(), v.end(), [](int x) { return x == 3; });
-		
+
 	assert(p1 == v.end());
-	assert(p2 == v.end());	
+	assert(p2 == v.end());
 }
 
 void find_found()
@@ -32,9 +32,9 @@ void find_found()
 
 	const auto p1 = es_util::find(v.begin(), v.end(), 2);
 	const auto p2 = es_util::find_if(v.begin(), v.end(), [](int x) { return x == 2; });
-		
+
 	assert(p1 == v.begin() + 1);
-	assert(p2 == v.begin() + 1);	
+	assert(p2 == v.begin() + 1);
 }
 
 int main()
@@ -44,5 +44,5 @@ int main()
 	find_found();
 
 	std::cout << "OK.\n";
-	return 0;
+	return EXIT_SUCCESS;
 }

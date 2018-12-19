@@ -41,5 +41,5 @@ int main()
 	circ_permutation_false();
 	
 	std::cout << "OK.\n";
-	return 0;
+	return EXIT_SUCCESS;
 }

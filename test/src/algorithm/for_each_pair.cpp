@@ -98,5 +98,5 @@ int main()
 	for_each_pair_n_main();
 
 	std::cout << "OK.\n";
-	return 0;
+	return EXIT_SUCCESS;
 }

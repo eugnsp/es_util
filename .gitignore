@@ -5,4 +5,6 @@
 *.lib
 *.exe
 *.out
+compile_commands.json
+.vscode/
 build/

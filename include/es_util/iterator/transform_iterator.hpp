@@ -15,8 +15,9 @@ private:
 public:
 	using iterator_category = typename Traits::iterator_category;
 	using reference = std::invoke_result_t<Op, typename Traits::reference>;
-	using value = std::remove_reference_t<reference>;
+	using value_type = std::remove_reference_t<reference>;
 	using difference_type = typename Traits::difference_type;
+	using pointer = void;
 
 public:
 	Transform_iterator() = default;

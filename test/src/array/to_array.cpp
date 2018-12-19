@@ -1,4 +1,3 @@
-#pragma once
 #include <es_util/array.hpp>
 
 #include <cassert>
