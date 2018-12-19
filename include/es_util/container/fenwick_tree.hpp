@@ -19,16 +19,16 @@ public:
 	using Size = Size_;
 
 public:
-	// Constructs an empty Fenwick tree
+	// Constructs the empty Fenwick tree
 	Fenwick_tree() = default;
 
-	// Constructs a Fenwick tree of the given size initialized with zero values
+	// Constructs the Fenwick tree of the given size initialized with the zero value
 	Fenwick_tree(Size size) : data_(size)
 	{
 		assert(!data_.empty());
 	}
 
-	// Constructs a Fenwick tree with the contents of the given range [first, last)
+	// Constructs the Fenwick tree with the contents of the range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
 	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_{first, last}
 	{
@@ -36,25 +36,9 @@ public:
 		construct_in_place();
 	}
 
-	// Constructs a Fenwick tree with the contents of the given initializer list
+	// Constructs the Fenwick tree with the contents of the given initializer list
 	Fenwick_tree(std::initializer_list<Value> list) : Fenwick_tree(list.begin(), list.end())
 	{}
-
-	// Replaces the contents with the given number of zero values
-	void reset(Size size)
-	{
-		assert(size > 0);
-		data_.assign(size, Value{});
-	}
-
-	// Replaces the contents with copies of values in the given range [first, last)
-	template<class Input_iterator1, class Input_iterator2>
-	void reset(Input_iterator1 first, Input_iterator2 last)
-	{
-		assert(first != last);
-		data_.assign(first, last);
-		construct_in_place();
-	}
 
 	Size size() const
 	{
@@ -81,7 +65,7 @@ public:
 		return value;
 	}
 
-	// Returns the sum of elements in the given closed range [first, last]
+	// Returns the sum of elements in the closed range [first, last]
 	Value sum(Size first, Size last) const
 	{
 		assert(first <= last && last < size());
@@ -152,6 +136,22 @@ public:
 
 	//////////////////////////////////////////////////////////////////////
 	/** Modifiers */
+
+	// Replaces the contents with the given number of copies of the zero value
+	void reset(Size size)
+	{
+		assert(size > 0);
+		data_.assign(size, Value{});
+	}
+
+	// Replaces the contents with copies of values in the given range [first, last)
+	template<class Input_iterator1, class Input_iterator2>
+	void reset(Input_iterator1 first, Input_iterator2 last)
+	{
+		assert(first != last);
+		data_.assign(first, last);
+		construct_in_place();
+	}
 
 	// Adds the given value to the element with the given index
 	void add(Size index, const Value& value)

@@ -1,7 +1,11 @@
-## Algorithms
+# Algorithms
+
+Header: `<es_util/algorithm.hpp>`
+
+---
 
 ### `for_each_pair`
-**Applies a function object to adjacent pairs of elements in a range**
+**Applies the function object to adjacent pairs of elements in the range**
 
 ```cpp
 template<class Fw_it, class Fw_it_end, class Fn>
@@ -12,7 +16,7 @@ Applies the given function object `fn` to adjacent pairs of elements in the rang
 
 *Parameters:*
 * `first`, `last` - the range to apply the function object to,
-* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
+* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`.
 
 *Return value:*
 the iterator pointing to the last element in the range; `first` if the range contains less than two elements.
@@ -20,7 +24,7 @@ the iterator pointing to the last element in the range; `first` if the range con
 *Example:*
 ```cpp
 std::vector v{1, 2, 3, 4};
-for_each_pair(v.begin(), v.end(), 
+for_each_pair(v.begin(), v.end(),
     [](int a, int b) { std::cout << '(' << a << ',' << b << ')'; });
 // Outputs: (1,2)(2,3)(3,4)
 ```
@@ -28,7 +32,7 @@ for_each_pair(v.begin(), v.end(),
 ---
 
 ### `for_each_pair_n`
-**Applies a function object to adjacent pairs of elements in a range**
+**Applies the function object to adjacent pairs of elements in the range**
 
 ```cpp
 template<class Fw_it, typename N, class Fn>
@@ -40,7 +44,7 @@ Applies the given function object `fn` to adjacent pairs of elements in the rang
 *Parameters:*
 * `first` - the beginning of the range to apply the function object to,
 * `n` - the number of pairs to apply the function object to,
-* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`. 
+* `fn` - the function object to be applied, the signature should be equivalent to the following: `void func(T& a, T& b);`; the type `T` must be such that an object of type `Fw_it` can be dereferenced and then implicitly converted to `T`.
 
 *Return value:*
 the iterator pointing to the last element in the range; `first` if the range contains less than two elements (`n` <= 0).

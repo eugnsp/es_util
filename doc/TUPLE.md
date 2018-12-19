@@ -1,7 +1,11 @@
-## Tuples
+# Tuples
+
+Header: `<es_util/tuple.hpp>`
+
+---
 
 ### `tuple_size`
-**Gives the number of elements in a tuple**
+**The number of elements in a tuple**
 
 ```cpp
 template<class Tuple>
@@ -16,7 +20,7 @@ Variable template giving the number of elements in the tuple as a compile-time c
 ---
 
 ### `tuple_element_offset`
-**Returns an offset from the beginning of a tuple to its member**
+**Returns an offset from the beginning of the tuple to its member**
 
 ```cpp
 template<class Tuple, std::size_t i>
@@ -41,7 +45,7 @@ std::size_t offset_d = tuple_element_offset<T, 1>();
 ```
 
 ### `tuple_all_of`, `tuple_any_of`, `tuple_none_of`
-**Checks whether a predicate returns `true` for all, any or none first, second, etc. elements of a list tuples**
+**Checks whether the predicate returns `true` for all, any or none first, second, etc. elements of the list of tuples**
 
 ```cpp
 // 1.
@@ -60,7 +64,7 @@ constexpr bool tuple_none_of(Pred pred, Tuples&&... tuples);
 3. Checks whether the `m`-ary predicate `pred` returns `true` for no first, second, etc. elements of the list `tuples` of `m` tuples, all having the same size `n`.
 
 *Parameters:*
-* `pred` - the predicate that accepts every sequence of `i`-th elements of tuples, 
+* `pred` - the predicate that accepts every sequence of `i`-th elements of tuples,
 * `tuples` - the list of zero or more tuples of the same size `n`.
 
 *Return value:*
@@ -85,7 +89,7 @@ assert(z2 == false);
 ---
 
 ### `tuple_forward_as_zipped`
-**Constructs a tuple of tuples holding rvalue references to first, second, etc. elements of a list of tuples ("zips" tuples for forwarding)**
+**Constructs a tuple of tuples holding rvalue references to first, second, etc. elements of the list of tuples ("zips" tuples for forwarding)**
 
 ```cpp
 template<class... Tuples>
@@ -109,7 +113,7 @@ auto z = tuple_forward_as_zipped(t1, std::tuple<double, float>{});
 ---
 
 ### `tuple_for_each`
-**Applies a function object to first, second, etc. elements of a list tuples**
+**Applies the function object to first, second, etc. elements of the list of tuples**
 
 ```cpp
 template<class Fn, class... Tuples>
@@ -119,7 +123,7 @@ constexpr void tuple_for_each(Fn&& fn, Tuples&&... tuples);
 Applies the given `m`-ary function object `fn` to first, second, etc. elements of the list `tuples` of `m` tuples, all having the same size `n`. The function object is applied to `std::get<i>(std::forward<Tuples>(tuples))...)` for all `i = 0, ..., n - 1`.
 
 *Parameters:*
-* `fn` - the function object that accepts every sequence of `i`-th elements of tuples, 
+* `fn` - the function object that accepts every sequence of `i`-th elements of tuples,
 * `tuples` - the list of one or more tuples of the same size.
 
 *Example:*
@@ -135,7 +139,7 @@ tuple_for_each(
 ---
 
 ### `tuple_map`
-**Applies a function object to first, second, etc. elements of a list tuples and returns a tuple of results**
+**Applies the function object to first, second, etc. elements of the list of tuples and returns a tuple of results**
 
 ```cpp
 template<class Fn, class... Tuples>
@@ -145,9 +149,8 @@ constexpr auto tuple_map(Fn&& fn, Tuples&&... tuples);
 Applies the given `m`-ary function object `fn` to all first, second, etc. elements of the list `tuples` of `m` tuples, all having the same size `n`, and returns the result as a tuple of size `n`.
 
 *Parameters:*
-* `fn` - the function object that accepts every sequence of `i`-th elements of tuples, 
+* `fn` - the function object that accepts every sequence of `i`-th elements of tuples,
 * `tuples` - the list of one or more tuples of the same size.
 
 *Return value:*
 value of type `std::tuple<Ts...>` with each type in the pack `Ts...` being given by the return type of `fn`, constructed by applying `fn` to `std::get<i>(std::forward<Tuples>(tuples))...)` for all `i = 0, ..., n - 1`.
-
