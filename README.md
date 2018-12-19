@@ -4,7 +4,7 @@
 
 ### Algorithms
 
-```
+```cpp
 namespace es_util
 {
 template<class Fw_it, class Fw_it_end, class Fn>
@@ -16,6 +16,53 @@ Fw_it for_each_pair_n(Fw_it first, N, Fn)
 ```
 
 [Detailed description](doc/ALGORITHM.md)
+
+### Containers
+
+#### Fenwick tree (binary indexed tree)
+
+```cpp
+namespace es_util
+{
+template<typename Value_, typename Size_ = std::size_t>
+class Fenwick_tree
+{
+public:
+	using Value = Value_;
+	using Size = Size_;
+
+	Fenwick_tree();
+	Fenwick_tree(Size);
+
+	template<class Input_iterator1, class Input_iterator2>
+	Fenwick_tree(Input_iterator1 first, Input_iterator2 last);
+
+	Fenwick_tree(std::initializer_list<Value>);
+
+	void reset(Size);
+
+	template<class Input_iterator1, class Input_iterator2>
+	void reset(Input_iterator1 first, Input_iterator2 last);
+
+	Size size() const;
+	bool is_empty() const;
+
+	Value operator[](Size) const;
+
+	Value sum(Size first, Size last) const;
+	Value sum(Size) const;
+	Value sum() const;
+
+	Size lower_bound(Value) const;
+	Size upper_bound(Value) const;
+
+	void add(Size, const Value&);
+	void set(Size, const Value&);
+};
+}
+```
+
+[Detailed description](doc/FENWICK_TREE.md)
 
 ### Tuples
 
@@ -49,49 +96,3 @@ constexpr auto tuple_map(Fn&&, Tuples&&...);
 ```
 
 [Detailed description](doc/TUPLE.md)
-
-### Containers
-
-#### Fenwick tree (binary indexed tree)
-
-```cpp
-namespace es_util
-{
-template<typename T>
-class Fenwick_tree
-{
-public:
-	using Value = T;
-
-	Fenwick_tree();
-	Fenwick_tree(std::size_t size);
-
-	template<class Input_iterator1, class Input_iterator2>
-	Fenwick_tree(Input_iterator1 first, Input_iterator2 last);
-
-	Fenwick_tree(std::initializer_list<Value>);
-
-	void reset(std::size_t size);
-
-	template<class Input_iterator1, class Input_iterator2>
-	void reset(Input_iterator1 first, Input_iterator2 last);
-
-	std::size_t size() const;
-	bool is_empty() const;
-
-	Value operator[](std::size_t) const;
-
-	Value sum(std::size_t first, std::size_t last) const;
-	Value sum(std::size_t) const;
-	Value sum() const;
-
-	std::size_t lower_bound(Value) const;
-	std::size_t upper_bound(Value) const;
-
-	void add(std::size_t, const Value&);
-	void set(std::size_t, const Value&);
-};
-}
-```
-
-[Detailed description](doc/FENWICK_TREE.md)
