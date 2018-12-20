@@ -40,8 +40,12 @@ Fenwick_tree(Size size);
 
 Constructs the Fenwick tree of the size `size` initialized with the zero values (`Value{}`).
 
+*Time complexity:* linear, `O(size)`.
+
 *Parameters:*
 * `size` - the size of the container.
+
+*Time complexity:* linear, `O(last - first)`.
 
 ```cpp
 template<class Input_iterator1, class Input_iterator2>
@@ -62,6 +66,8 @@ Constructs the Fenwick tree with the contents of the initializer list `list`.
 *Parameters:*
 * `list` - initializer list to initialize the elements of the container with.
 
+*Time complexity:* linear, `O(N)`, where `N` is the size of the `list`.
+
 ### `size`, `is_empty`
 
 ```cpp
@@ -69,6 +75,8 @@ Size size() const;
 ```
 
 Returns the number of elements in the container.
+
+*Time complexity:* constant.
 
 ```cpp
 bool is_empty() const;
@@ -78,6 +86,8 @@ Checks if the container has no elements.
 
 *Return value:*
 `true` if the container is empty, and `false` otherwise.
+
+*Time complexity:* constant.
 
 ### `operator[]`
 **Retrieves the given element**
@@ -91,6 +101,8 @@ Returns the element with the index `index`.
 *Parameters:*
 * `index` - index of the element to return.
 
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
+
 ### `get`
 **Retrieves all elements**
 
@@ -99,10 +111,12 @@ template<class Random_access_iterator>
 void get(Random_access_iterator dest);
 ```
 
-Stores all elements of the container in the range `[dest, dest + size)`, where `size` is the size of the container.
+Stores all elements in the range `[dest, dest + size)`, where `size` is the size of the container.
 
 *Parameters:*
 * `dest` - the beginning of the destination range, should be a random access iterator.
+
+*Time complexity:* linear in the size of the container, `O(size())`.
 
 ### `sum`
 **Range sum calculation**
@@ -124,6 +138,8 @@ Value sum() const;
 * `first`, `last` - the range of elements to calculate the sum of.
 * `index` - index of the last element in the range to calculate the sum of.
 
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
+
 ### `lower_bound`, `upper_bound`
 **Lower/upper bound binary search in a Fenwick tree with non-decreasing prefix sums**
 
@@ -138,6 +154,8 @@ Size upper_bound(Value value) const;
 2. Returns the smallest index such that the prefix sum is greater than the value `value`, or the container's size if no such index exists.
 
 *Precondition:* the container should be non-empty and all elements should be non-negative, so that the sequence of all prefix sums is non-decreasing (sorted).
+
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
 
 ### `reset`
 **Replaces the contents of the container**
@@ -156,6 +174,8 @@ void reset(Input_iterator1 first, Input_iterator2 last);
 * `size` - the new size of the container,
 * `first`, `last` - the range to copy the elements from.
 
+*Time complexity:* logarithmic in the new size of the container, 1. `O(log(size))`, 2. `O(log(last - first))`.
+
 ### `add`
 **Increments the given element**
 
@@ -169,6 +189,8 @@ Adds the value `value` to the element with the index `index`.
 * `index` - index of the element to add to,
 * `value` - value to add.
 
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
+
 ### `set`
 **Sets the given element**
 
@@ -181,3 +203,5 @@ Sets the value of the element with the index `index` to `value`.
 *Parameters:*
 * `index` - index of the element to add to,
 * `value` - value to set.
+
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
