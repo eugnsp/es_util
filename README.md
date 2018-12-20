@@ -49,6 +49,9 @@ public:
 
 	Value operator[](Size) const;
 
+	template<class Random_access_iterator>
+	void get(Random_access_iterator);
+
 	Value sum(Size first, Size last) const;
 	Value sum(Size) const;
 	Value sum() const;

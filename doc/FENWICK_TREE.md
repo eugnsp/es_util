@@ -38,7 +38,7 @@ Default constructor. Constructs the empty Fenwick tree.
 Fenwick_tree(Size size);
 ```
 
-Constructs the Fenwick tree of the size `size` initialized with the zero value (`Value{}`).
+Constructs the Fenwick tree of the size `size` initialized with the zero values (`Value{}`).
 
 *Parameters:*
 * `size` - the size of the container.
@@ -80,7 +80,7 @@ Checks if the container has no elements.
 `true` if the container is empty, and `false` otherwise.
 
 ### `operator[]`
-**Accesses the given element**
+**Retrieves the given element**
 
 ```cpp
 Value operator[](Size index) const;
@@ -90,6 +90,19 @@ Returns the element with the index `index`.
 
 *Parameters:*
 * `index` - index of the element to return.
+
+### `get`
+**Retrieves all elements**
+
+```cpp
+template<class Random_access_iterator>
+void get(Random_access_iterator dest);
+```
+
+Stores all elements of the container in the range `[dest, dest + size)`, where `size` is the size of the container.
+
+*Parameters:*
+* `dest` - the beginning of the destination range, should be a random access iterator.
 
 ### `sum`
 **Range sum calculation**
@@ -103,8 +116,8 @@ Value sum(Size index) const;
 Value sum() const;
 ```
 
-1. Returns the sum of elements in the closed range `[first, last)`.
-2. Returns the prefix sum for the element with the index `index`, i.e. the sum of elements in the closed range `[0, index]`.
+1. Returns the sum of elements in the closed range `[first, last]`.
+2. Returns the prefix sum, i.e. the sum of elements in the closed range `[0, index]`.
 3. Returns the sum of all element in the container. *Precondition:* the container should be non-empty.
 
 *Parameters:*

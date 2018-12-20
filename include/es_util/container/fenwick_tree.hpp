@@ -65,6 +65,24 @@ public:
 		return value;
 	}
 
+	// Stores all elements in the range [dest, dest + size())
+	template<class Random_access_iterator>
+	void get(Random_access_iterator dest)
+	{
+		if (is_empty())
+			return;
+
+		auto index = size();
+		do
+		{
+			--index;
+			dest[index] = data_[index];
+			if (const auto p = parent(index); p < size())
+				dest[p] -= dest[index];
+		}
+		while (index != 0);
+	}
+
 	// Returns the sum of elements in the closed range [first, last]
 	Value sum(Size first, Size last) const
 	{
@@ -72,17 +90,17 @@ public:
 
 		auto sum = data_[last];
 
-		last = child(last);
+		last = last_child(last);
 		while (last > first)
 		{
 			sum += data_[--last];
-			last = child(last);
+			last = last_child(last);
 		}
 
 		while (first != last)
 		{
 			sum -= data_[--first];
-			first = child(first);
+			first = last_child(first);
 		}
 
 		return sum;
@@ -107,6 +125,8 @@ public:
 	// elements should be non-negative, so that the sequence of all prefix sums is non-decreasing
 	Size lower_bound(Value value) const
 	{
+		assert(!is_empty());
+
 		Size index = 0;
 		for (auto mask = msb_size_mask(); mask != 0; mask >>= 1)
 			if (const auto k = mask + index - 1; k < size() && data_[k] < value)
@@ -123,6 +143,8 @@ public:
 	// elements should be non-negative, so that the sequence of all prefix sums is non-decreasing
 	Size upper_bound(Value value) const
 	{
+		assert(!is_empty());
+
 		Size index = 0;
 		for (auto mask = msb_size_mask(); mask != 0; mask >>= 1)
 			if (const auto k = mask + index - 1; k < size() && !(value < data_[k]))
@@ -177,7 +199,7 @@ private:
 	}
 
 	// Returns the index of the deepest left-most child
-	static constexpr Size child(Size index)
+	static constexpr Size last_child(Size index)
 	{
 		return index & (index + 1);
 	}
@@ -188,7 +210,7 @@ private:
 		return index | (index + 1);
 	}
 
-	// Converts (data) array into a Fenwick tree in-place
+	// Converts the array of values into the Fenwick tree in-place
 	void construct_in_place()
 	{
 		for (Size index = 0; index < size(); ++index)
