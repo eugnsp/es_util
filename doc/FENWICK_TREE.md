@@ -45,8 +45,6 @@ Constructs the Fenwick tree of the size `size` initialized with the zero values 
 *Parameters:*
 * `size` - the size of the container.
 
-*Time complexity:* linear, `O(last - first)`.
-
 ```cpp
 template<class Input_iterator1, class Input_iterator2>
 Fenwick_tree(Input_iterator1 first, Input_iterator2 last);
@@ -56,6 +54,8 @@ Constructs the Fenwick tree with the contents of the range `[first, last)`.
 
 *Parameters:*
 * `first`, `last` - the range to copy the elements from.
+
+*Time complexity:* linear, `O(last - first)`.
 
 ```cpp
 Fenwick_tree(std::initializer_list<Value> list);
@@ -174,7 +174,7 @@ void reset(Input_iterator1 first, Input_iterator2 last);
 * `size` - the new size of the container,
 * `first`, `last` - the range to copy the elements from.
 
-*Time complexity:* logarithmic in the new size of the container, 1. `O(log(size))`, 2. `O(log(last - first))`.
+*Time complexity:* linear in the new size of the container, 1. `O(size)`, 2. `O(last - first)`.
 
 ### `add`
 **Increments the given element**
