@@ -66,7 +66,7 @@ Constructs the Fenwick tree with the contents of the initializer list `list`.
 *Parameters:*
 * `list` - initializer list to initialize the elements of the container with.
 
-*Time complexity:* linear, `O(N)`, where `N` is the size of the `list`.
+*Time complexity:* linear, `O(list.size())`.
 
 ### `size`, `is_empty`
 

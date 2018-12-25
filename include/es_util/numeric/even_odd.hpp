@@ -17,4 +17,4 @@ constexpr bool is_odd(Integral n)
 {
 	return !is_even(n);
 }
-}
+} // namespace es_util

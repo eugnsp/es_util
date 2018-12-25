@@ -22,4 +22,4 @@ constexpr auto unsigned_iabs(Integral n)
 	const Unsigned un = static_cast<Unsigned>(n);
 	return (n >= 0) ? un : (0 - un);
 }
-}
+} // namespace es_util

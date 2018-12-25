@@ -2,6 +2,7 @@
 #include <es_util/numeric/even_odd.hpp>
 
 #include <cassert>
+#include <cmath>
 #include <type_traits>
 
 namespace es_util
@@ -39,4 +40,27 @@ constexpr T int_pow(T x, Integral n)
 	return result;
 }
 
+template<typename T>
+auto hypot(T x, T y)
+{
+	return std::sqrt(sq(x) + sq(y));
 }
+
+template<typename T>
+auto hypot(T x, T y, T z)
+{
+	return std::sqrt(sq(x) + sq(y) + sq(z));
+}
+
+template<typename T>
+auto cathetus(T hypot, T x)
+{
+	return std::sqrt(sq(hypot) - sq(x));
+}
+
+template<typename T>
+auto cathetus(T hypot, T x, T y)
+{
+	return std::sqrt(sq(hypot) - sq(x) - sq(y));
+}
+} // namespace es_util

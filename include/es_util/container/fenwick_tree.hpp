@@ -22,17 +22,17 @@ public:
 	// Constructs the empty Fenwick tree
 	Fenwick_tree() = default;
 
-	// Constructs the Fenwick tree of the given size initialized with the zero value
+	// Constructs the Fenwick tree of the given size initialized with the zero values
 	Fenwick_tree(Size size) : data_(size)
 	{
-		assert(!data_.empty());
+		assert(!is_empty());
 	}
 
 	// Constructs the Fenwick tree with the contents of the range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
 	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_{first, last}
 	{
-		assert(!data_.empty());
+		assert(!is_empty());
 		construct_in_place();
 	}
 
