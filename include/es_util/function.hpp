@@ -20,7 +20,7 @@ struct Identity_function
 		return std::forward<T>(v);
 	}
 };
-}
+} // namespace internal
 
 template<typename T>
 T reverse_bytes(T value)
@@ -62,4 +62,4 @@ auto average(Iter begin, const Iter end, Function func = Function{})
 }
 
 std::string compiler_and_mkl_info();
-}
+} // namespace es_util

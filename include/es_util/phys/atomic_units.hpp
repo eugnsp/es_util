@@ -89,12 +89,12 @@ ES_PHYS_DEFINE_AU_UNIT(kvolt_per_cm, 1e3 * volt / cmetre)
 
 // Units of mobility
 
-ES_PHYS_DEFINE_AU_UNIT(cm2_per_volt_sec, cmetre * cmetre / (evolt * second))
+ES_PHYS_DEFINE_AU_UNIT(cm2_per_volt_sec, cmetre* cmetre / (evolt * second))
 
 // Unit of resistance
 
-ES_PHYS_DEFINE_AU_UNIT(ohm, volt * second / coulomb)
+ES_PHYS_DEFINE_AU_UNIT(ohm, volt* second / coulomb)
 ES_PHYS_DEFINE_AU_UNIT(mohm, 1e-3 * volt * second / coulomb)
 ES_PHYS_DEFINE_AU_UNIT(kohm, 1e3 * volt * second / coulomb)
 
-} // namespace phys::au
+} // namespace es_util::au

@@ -109,7 +109,7 @@ private:
 };
 
 template<class Iterator, class Unary_operation>
-Transform_iterator(Iterator, Unary_operation) -> Transform_iterator<Iterator, Unary_operation>;
+Transform_iterator(Iterator, Unary_operation)->Transform_iterator<Iterator, Unary_operation>;
 
 //////////////////////////////////////////////////////////////////////////
 /** Input/forward iterator free functions */
@@ -128,8 +128,8 @@ bool operator!=(const Transform_iterator<Iterator1, Unary_operation>& it1,
 	return it1.base() != it2.base();
 }
 
-//template<class Iterator_l, class Iterator_r>
-//bool operator!=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// bool operator!=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() != it_r.base();
 //}
@@ -137,42 +137,41 @@ bool operator!=(const Transform_iterator<Iterator1, Unary_operation>& it1,
 ////////////////////////////////////////////////////////////////////////////
 ///** Random access iterator free functions */
 //
-//template<class Iterator_l, class Iterator_r>
-//bool operator<(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// bool operator<(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() < it_r.base();
 //}
 //
-//template<class Iterator_l, class Iterator_r>
-//bool operator<=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// bool operator<=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() <= it_r.base();
 //}
 //
-//template<class Iterator_l, class Iterator_r>
-//bool operator>(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// bool operator>(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() > it_r.base();
 //}
 //
-//template<class Iterator_l, class Iterator_r>
-//bool operator>=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// bool operator>=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() >= it_r.base();
 //}
 //
-//template<class Iterator_l, class Iterator_r>
-//auto operator-(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
+// template<class Iterator_l, class Iterator_r>
+// auto operator-(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 //{
 //	return it_l.base() - it_r.base();
 //}
 //
-//template<class Iterator>
-//auto operator+(typename Smart_ptr_iter<Iterator>::difference_type n,
+// template<class Iterator>
+// auto operator+(typename Smart_ptr_iter<Iterator>::difference_type n,
 //			   const Smart_ptr_iter<Iterator>& it)
 //{
 //	return it + n;
 //}
-
 
 } // namespace es_util

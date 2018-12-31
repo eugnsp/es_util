@@ -20,7 +20,7 @@ inline std::string size_string(std::size_t size)
 		else
 			std::snprintf(size_buf, sizeof(size_buf), "%.2f GB", size / 1'073'741'824.);
 	}
-	
+
 	return size_buf;
 }
-}
+} // namespace es_util

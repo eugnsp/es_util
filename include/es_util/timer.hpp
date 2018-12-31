@@ -54,4 +54,4 @@ public:
 private:
 	std::chrono::time_point<Clock> start_, stop_;
 };
-}
+} // namespace es_util

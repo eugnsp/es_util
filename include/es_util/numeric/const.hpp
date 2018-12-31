@@ -26,7 +26,7 @@ inline constexpr double sqrt_two = 1.414213562373095048802;
 inline constexpr double sqrt_three = 1.732050807568877293527;
 inline constexpr double sqrt_five = 2.236067977499789696410;
 inline constexpr double sqrt_fifteen = 3.872983346207416885179;
-                     
+
 inline constexpr double sqrt_half = 1 / sqrt_two;
 inline constexpr double sqrt_third = 1 / sqrt_three;
 
@@ -39,4 +39,4 @@ inline constexpr double log_dbl_max = 7.097827128933839967833e2;
 
 inline constexpr double dbl_min = std::numeric_limits<double>::min();
 inline const double log_dbl_min = std::log(dbl_min);
-}
+} // namespace es_util::math

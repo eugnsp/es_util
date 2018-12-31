@@ -7,8 +7,8 @@
 
 namespace es_util
 {
-// An iterator adapter with the same behavior as the underlying iterator except that 
-// its dereference operator returns an object managed by a smart pointer, and not 
+// An iterator adapter with the same behavior as the underlying iterator except that
+// its dereference operator returns an object managed by a smart pointer, and not
 // smart pointer itself; if the underlying iterator is constant iterator, dereferencing
 // produces a constant reference.
 template<class Iterator>
@@ -16,7 +16,7 @@ class Smart_ptr_iter
 {
 private:
 	using Traits = std::iterator_traits<Iterator>;
-	static constexpr bool is_const_it = 
+	static constexpr bool is_const_it =
 		std::is_const_v<std::remove_reference_t<typename Traits::reference>>;
 
 public:
@@ -27,9 +27,8 @@ public:
 	using pointer = Add_const_to_pointer_if<is_const_it, typename Traits::value_type::pointer>;
 
 public:
-	explicit Smart_ptr_iter(Iterator base = {}) :
-		base_{std::move(base)}
-	{ }
+	explicit Smart_ptr_iter(Iterator base = {}) : base_{std::move(base)}
+	{}
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -51,7 +50,7 @@ public:
 	{
 		return base_->get();
 	}
-	
+
 	Smart_ptr_iter& operator++()
 	{
 		++base_;
@@ -112,22 +111,20 @@ public:
 	}
 
 private:
-	Iterator base_;		// Underlying iterator
+	Iterator base_; // Underlying iterator
 };
 
 //////////////////////////////////////////////////////////////////////////
 /** Input/forward iterator free functions */
 
 template<class Iterator_l, class Iterator_r>
-bool operator==(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator==(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() == it_r.base();
 }
 
 template<class Iterator_l, class Iterator_r>
-bool operator!=(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator!=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() != it_r.base();
 }
@@ -136,44 +133,39 @@ bool operator!=(const Smart_ptr_iter<Iterator_l>& it_l,
 /** Random access iterator free functions */
 
 template<class Iterator_l, class Iterator_r>
-bool operator<(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator<(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() < it_r.base();
 }
 
 template<class Iterator_l, class Iterator_r>
-bool operator<=(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator<=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() <= it_r.base();
 }
 
 template<class Iterator_l, class Iterator_r>
-bool operator>(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator>(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() > it_r.base();
 }
 
 template<class Iterator_l, class Iterator_r>
-bool operator>=(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+bool operator>=(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() >= it_r.base();
 }
 
 template<class Iterator_l, class Iterator_r>
-auto operator-(const Smart_ptr_iter<Iterator_l>& it_l, 
-	const Smart_ptr_iter<Iterator_r>& it_r)
+auto operator-(const Smart_ptr_iter<Iterator_l>& it_l, const Smart_ptr_iter<Iterator_r>& it_r)
 {
 	return it_l.base() - it_r.base();
 }
 
 template<class Iterator>
 auto operator+(typename Smart_ptr_iter<Iterator>::difference_type n,
-	const Smart_ptr_iter<Iterator>& it)
+			   const Smart_ptr_iter<Iterator>& it)
 {
 	return it + n;
 }
-}
+} // namespace es_util

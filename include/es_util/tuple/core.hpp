@@ -27,8 +27,7 @@ inline constexpr auto index_sequence_for_tuple = std::make_index_sequence<tuple_
 template<typename Fn>
 constexpr auto forward_with_apply(Fn&& fn)
 {
-	return [&fn](auto&& tuple) -> decltype(auto)
-	{
+	return [&fn](auto&& tuple) -> decltype(auto) {
 		return std::apply(std::forward<Fn>(fn), std::forward<decltype(tuple)>(tuple));
 	};
 }

@@ -1,6 +1,6 @@
 #include "function.hpp"
 #if __has_include(<mkl_version.h>)
-#include <mkl_version.h>
+#	include <mkl_version.h>
 #endif
 #include <cctype>
 #include <sstream>
@@ -33,18 +33,21 @@ std::string compiler_and_mkl_info()
 #endif
 
 #ifdef __INTEL_COMPILER
-	info << '\n' << "Intel C++ Compiler Version " << __INTEL_COMPILER << " (" << __INTEL_COMPILER_BUILD_DATE << ')';
+	info << '\n'
+		 << "Intel C++ Compiler Version " << __INTEL_COMPILER << " (" << __INTEL_COMPILER_BUILD_DATE
+		 << ')';
 #else
-#ifdef _MSC_VER
+#	ifdef _MSC_VER
 	info << '\n' << "Microsoft C/C++ Compiler Version " << _MSC_FULL_VER;
-#endif
+#	endif
 #endif
 
 #ifdef __INTEL_MKL__
-	info << '\n' << "Intel MKL Version " << __INTEL_MKL__ << '.' << __INTEL_MKL_MINOR__ << '.' << __INTEL_MKL_UPDATE__
-		<< " (" << __INTEL_MKL_BUILD_DATE << ')';
+	info << '\n'
+		 << "Intel MKL Version " << __INTEL_MKL__ << '.' << __INTEL_MKL_MINOR__ << '.'
+		 << __INTEL_MKL_UPDATE__ << " (" << __INTEL_MKL_BUILD_DATE << ')';
 #endif
 
 	return info.str();
 }
-}
+} // namespace es_util

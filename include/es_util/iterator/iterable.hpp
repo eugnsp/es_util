@@ -27,7 +27,7 @@ public:
 	{
 		return end_;
 	}
-	
+
 	Iterator_end end() const
 	{
 		return end_;

@@ -79,8 +79,7 @@ public:
 			dest[index] = data_[index];
 			if (const auto p = parent(index); p < size())
 				dest[p] -= dest[index];
-		}
-		while (index != 0);
+		} while (index != 0);
 	}
 
 	// Returns the sum of elements in the closed range [first, last]
@@ -223,7 +222,8 @@ private:
 };
 
 template<class Input_iterator1, class Input_iterator2>
-Fenwick_tree(Input_iterator1, Input_iterator2) -> Fenwick_tree<
-	typename std::iterator_traits<Input_iterator1>::value_type,
-	std::make_unsigned_t<typename std::iterator_traits<Input_iterator1>::difference_type>>;
+Fenwick_tree(Input_iterator1, Input_iterator2)
+	->Fenwick_tree<
+		typename std::iterator_traits<Input_iterator1>::value_type,
+		std::make_unsigned_t<typename std::iterator_traits<Input_iterator1>::difference_type>>;
 } // namespace es_util

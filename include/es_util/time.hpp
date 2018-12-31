@@ -19,4 +19,4 @@ inline std::string date_time_string(const std::string& format = "%a, %d %b %Y %T
 	std::strftime(time, sizeof(time), format.c_str(), &ltm);
 	return std::string(time);
 }
-}
+} // namespace es_util

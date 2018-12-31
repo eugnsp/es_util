@@ -43,4 +43,4 @@ inline unsigned char n_leading_zero_bits(unsigned long long value)
 		return CHAR_BIT * sizeof(unsigned long long);
 }
 #endif
-}
+} // namespace es_util

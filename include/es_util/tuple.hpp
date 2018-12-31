@@ -16,4 +16,4 @@ std::tuple<std::integral_constant<std::size_t, is>...> make_index_tuple(std::ind
 
 template<std::size_t size>
 using Make_index_tuple = decltype(internal::make_index_tuple(std::make_index_sequence<size>{}));
-}
+} // namespace es_util
