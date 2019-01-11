@@ -46,6 +46,17 @@ Constructs the Fenwick tree of the size `size` initialized with the zero values 
 * `size` - the size of the container.
 
 ```cpp
+Fenwick_tree(std::vector<Value> data);
+```
+
+Constructs the Fenwick tree with the contents of the vector `data`, moving its contents into the container.
+
+*Parameters:*
+* `data` - the vector to move the contents from.
+
+*Time complexity:* linear, `O(data.size())`.
+
+```cpp
 template<class Input_iterator1, class Input_iterator2>
 Fenwick_tree(Input_iterator1 first, Input_iterator2 last);
 ```
@@ -68,7 +79,18 @@ Constructs the Fenwick tree with the contents of the initializer list `list`.
 
 *Time complexity:* linear, `O(list.size())`.
 
-### `size`, `is_empty`
+### `is_empty`, `size`, `capacity`
+
+```cpp
+bool is_empty() const;
+```
+
+Checks if the container has no elements.
+
+*Return value:*
+`true` if the container is empty, and `false` otherwise.
+
+*Time complexity:* constant.
 
 ```cpp
 Size size() const;
@@ -79,13 +101,10 @@ Returns the number of elements in the container.
 *Time complexity:* constant.
 
 ```cpp
-bool is_empty() const;
+bool capacity() const;
 ```
 
-Checks if the container has no elements.
-
-*Return value:*
-`true` if the container is empty, and `false` otherwise.
+Returns the number of elements that the container has currently allocated space for.
 
 *Time complexity:* constant.
 
@@ -164,17 +183,21 @@ Size upper_bound(Value value) const;
 // 1.
 void reset(Size size);
 // 2.
+void reset(std::vector<Value> data);
+// 3.
 void reset(Input_iterator1 first, Input_iterator2 last);
 ```
 
 1. Replaces the contents with `size` copies of the zero value (`= Value{}`).
-2. Replaces the contents with copies of values in the range `[first, last)`.
+2. Replaces the contents with the contents of `data`.
+3. Replaces the contents with copies of values in the range `[first, last)`.
 
 *Parameters:*
 * `size` - the new size of the container,
+* `data` - the vector to move the contents from,
 * `first`, `last` - the range to copy the elements from.
 
-*Time complexity:* linear in the new size of the container, 1. `O(size)`, 2. `O(last - first)`.
+*Time complexity:* linear in the new size of the container, 1. `O(size)`, 2. `O(data.size())`, 3. `O(last - first)`.
 
 ### `add`
 **Increments the given element**
@@ -205,3 +228,28 @@ Sets the value of the element with the index `index` to `value`.
 * `value` - value to set.
 
 *Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
+
+### `push`
+**Adds an element to the end*
+
+```cpp
+void push(const Value& value);
+```
+
+Appends the given element value to the end of the container.
+
+*Parameters:*
+* `value` - value to append.
+
+*Time complexity:* logarithmic in the size of the container, `O(log(size()))`.
+
+### `pop`
+**Removes the last element*
+
+```cpp
+void pop();
+```
+
+Removes the last element of the container.
+
+*Time complexity:* constant.

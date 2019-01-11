@@ -126,6 +126,43 @@ void set()
 	}
 }
 
+void push()
+{
+	std::vector<std::size_t> v;
+	es_util::Fenwick_tree<std::size_t> ft;
+
+	for (std::size_t size = 1; size <= max_size; ++size)
+	{
+		const auto k = seq();
+
+		v.push_back(k);
+		ft.push(k);
+		assert(ft.size() == size);
+
+		for (std::size_t i = 0; i < size; ++i)
+			assert(ft[i] == v[i]);
+	}
+}
+
+void pop()
+{
+	for (std::size_t size = 1; size <= max_size; ++size)
+	{
+		std::vector<std::size_t> v(size);
+		std::generate(v.begin(), v.end(), seq);
+
+		es_util::Fenwick_tree ft(v.begin(), v.end());
+		assert(ft.size() == size);
+
+		for (std::size_t i = 0; i < size; ++i)
+		{
+			const auto k = ft.pop();
+			assert(k == v.back());
+			v.pop_back();
+		}
+	}
+}
+
 void lower_upper_bounds_zeros()
 {
 	for (std::size_t size = 1; size <= max_size; ++size)
@@ -184,9 +221,12 @@ int main()
 	TEST(add);
 	TEST(set);
 
+	TEST(push);
+	TEST(pop);
+
 	TEST(lower_upper_bounds_zeros);
 	TEST(lower_upper_bounds);
-	
+
 	std::cout << "All OK" << std::endl;
 	return 0;
 }

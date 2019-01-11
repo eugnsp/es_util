@@ -11,6 +11,6 @@ TEST(type_traits_nth_test, main)
 
 	testing::StaticAssertTypeEq<es_util::Head<int>, int>();
 	testing::StaticAssertTypeEq<es_util::Head<int, double, float>, int>();
-	
+
 	SUCCEED();
 }

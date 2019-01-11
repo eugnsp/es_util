@@ -154,7 +154,7 @@ namespace std
 template<class... Iterators>
 void iter_swap(es_util::Zip_iterator<Iterators...> it1, es_util::Zip_iterator<Iterators...> it2)
 {
-	es_util::tuple_for_each([](auto it1, auto it2) { std::iter_swap(it1, it2); }, it1.iterators(),
-							it2.iterators());
+	es_util::tuple_for_each(
+		[](auto it1, auto it2) { std::iter_swap(it1, it2); }, it1.iterators(), it2.iterators());
 }
 } // namespace std

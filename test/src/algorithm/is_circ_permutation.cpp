@@ -39,7 +39,7 @@ int main()
 	circ_permutation_empty();
 	circ_permutation_true();
 	circ_permutation_false();
-	
+
 	std::cout << "OK.\n";
 	return EXIT_SUCCESS;
 }

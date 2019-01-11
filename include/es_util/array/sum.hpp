@@ -8,8 +8,8 @@ namespace es_util
 namespace internal
 {
 template<typename T, typename S, std::size_t size, std::size_t... indices>
-constexpr T array_sum_impl(const std::array<S, size>& array, const T& init,
-						   std::index_sequence<indices...>)
+constexpr T array_sum_impl(
+	const std::array<S, size>& array, const T& init, std::index_sequence<indices...>)
 {
 	return (init + ... + array[indices]);
 }

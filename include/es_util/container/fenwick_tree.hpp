@@ -7,6 +7,7 @@
 #include <initializer_list>
 #include <iterator>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
 namespace es_util
@@ -28,6 +29,13 @@ public:
 		assert(!is_empty());
 	}
 
+	// Constructs the Fenwick tree with the contents of the given vector
+	Fenwick_tree(std::vector<Value> data) : data_{std::move(data)}
+	{
+		assert(!is_empty());
+		construct_in_place();
+	}
+
 	// Constructs the Fenwick tree with the contents of the range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
 	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_{first, last}
@@ -40,14 +48,22 @@ public:
 	Fenwick_tree(std::initializer_list<Value> list) : Fenwick_tree(list.begin(), list.end())
 	{}
 
+	// Checks if the container has no elements
+	bool is_empty() const
+	{
+		return data_.empty();
+	}
+
+	// Returns the number of elements in the container
 	Size size() const
 	{
 		return static_cast<Size>(data_.size());
 	}
 
-	bool is_empty() const
+	// Returns the number of elements that the container has currently allocated space for
+	Size capacity() const
 	{
-		return data_.empty();
+		return static_cast<Size>(data_.capacity());
 	}
 
 	//////////////////////////////////////////////////////////////////////
@@ -165,6 +181,14 @@ public:
 		data_.assign(size, Value{});
 	}
 
+	// Replaces the contents with the contents of the given vector
+	void reset(std::vector<Value> data)
+	{
+		assert(!data.empty());
+		data_ = std::move(data);
+		construct_in_place();
+	}
+
 	// Replaces the contents with copies of values in the given range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
 	void reset(Input_iterator1 first, Input_iterator2 last)
@@ -186,6 +210,22 @@ public:
 	void set(Size index, const Value& value)
 	{
 		add(index, value - (*this)[index]);
+	}
+
+	// Appends the given element value to the end of the container
+	void push(const Value& value)
+	{
+		data_.push_back(value);
+
+		const auto index = size() - 1;
+		for (Size mask = 1; (index & mask) != 0; mask <<= 1)
+			data_.back() += data_[index ^ mask];
+	}
+
+	// Removes the last element of the container
+	void pop()
+	{
+		data_.pop_back();
 	}
 
 private:

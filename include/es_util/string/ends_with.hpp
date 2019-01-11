@@ -8,8 +8,8 @@ namespace es_util
 template<class Binary_predicate>
 bool ends_with(std::string_view str, std::string_view ending, Binary_predicate pred)
 {
-	return ending.length() <= str.length()
-		   && std::equal(ending.rbegin(), ending.rend(), str.rbegin(), pred);
+	return ending.length() <= str.length() &&
+		   std::equal(ending.rbegin(), ending.rend(), str.rbegin(), pred);
 }
 
 inline bool ends_with(std::string_view str, std::string_view ending)
