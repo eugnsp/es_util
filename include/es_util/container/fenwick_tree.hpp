@@ -30,7 +30,7 @@ public:
 	}
 
 	// Constructs the Fenwick tree with the contents of the given vector
-	Fenwick_tree(std::vector<Value> data) : data_{std::move(data)}
+	Fenwick_tree(std::vector<Value> data) : data_(std::move(data))
 	{
 		assert(!is_empty());
 		construct_in_place();
@@ -38,7 +38,7 @@ public:
 
 	// Constructs the Fenwick tree with the contents of the range [first, last)
 	template<class Input_iterator1, class Input_iterator2>
-	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_{first, last}
+	Fenwick_tree(Input_iterator1 first, Input_iterator2 last) : data_(first, last)
 	{
 		assert(!is_empty());
 		construct_in_place();
@@ -47,6 +47,9 @@ public:
 	// Constructs the Fenwick tree with the contents of the given initializer list
 	Fenwick_tree(std::initializer_list<Value> list) : Fenwick_tree(list.begin(), list.end())
 	{}
+
+	//////////////////////////////////////////////////////////////////////
+	/** Capacity */
 
 	// Checks if the container has no elements
 	bool is_empty() const
@@ -262,8 +265,7 @@ private:
 };
 
 template<class Input_iterator1, class Input_iterator2>
-Fenwick_tree(Input_iterator1, Input_iterator2)
-	->Fenwick_tree<
-		typename std::iterator_traits<Input_iterator1>::value_type,
-		std::make_unsigned_t<typename std::iterator_traits<Input_iterator1>::difference_type>>;
+Fenwick_tree(Input_iterator1, Input_iterator2) -> Fenwick_tree<
+	typename std::iterator_traits<Input_iterator1>::value_type,
+	std::make_unsigned_t<typename std::iterator_traits<Input_iterator1>::difference_type>>;
 } // namespace es_util

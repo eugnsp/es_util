@@ -33,19 +33,20 @@ public:
 
 	Fenwick_tree();
 	Fenwick_tree(Size);
+	Fenwick_tree(std::vector<Value>);
 
 	template<class Input_iterator1, class Input_iterator2>
 	Fenwick_tree(Input_iterator1 first, Input_iterator2 last);
 
 	Fenwick_tree(std::initializer_list<Value>);
 
-	void reset(Size);
+	// Capacity
 
-	template<class Input_iterator1, class Input_iterator2>
-	void reset(Input_iterator1 first, Input_iterator2 last);
-
-	Size size() const;
 	bool is_empty() const;
+	Size size() const;
+	Size capacity() const;
+
+	// Element access
 
 	Value operator[](Size) const;
 
@@ -59,8 +60,19 @@ public:
 	Size lower_bound(Value) const;
 	Size upper_bound(Value) const;
 
+	// Modifiers
+
+	void reset(Size);
+	void reset(std::vector<Value>);
+
+	template<class Input_iterator1, class Input_iterator2>
+	void reset(Input_iterator1 first, Input_iterator2 last);
+
 	void add(Size, const Value&);
 	void set(Size, const Value&);
+
+	void push(const Value&);
+	void pop();
 };
 }
 ```
