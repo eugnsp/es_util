@@ -19,13 +19,13 @@ using Remove_cvref = typename Remove_cvref_impl<T>::Type;
 
 // Template used to exclude specific arguments from deduction
 template<class T>
-struct Identity
+struct Identity_fn
 {
 	using Type = T;
 };
 
 template<class T>
-using Identity_t = typename Identity<T>::Type;
+using Identity = typename Identity_fn<T>::Type;
 
 //////////////////////////////////////////////////////////////////////////
 

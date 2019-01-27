@@ -4,6 +4,7 @@
 #include <es_util/tuple/for_each.hpp>
 #include <es_util/tuple/forward_as_zipped.hpp>
 #include <es_util/tuple/map.hpp>
+#include <es_util/tuple/select.hpp>
 #include <es_util/tuple/to_array.hpp>
 
 namespace es_util
