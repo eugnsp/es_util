@@ -3,4 +3,7 @@
 #include <es_util/numeric/const.hpp>
 #include <es_util/numeric/det.hpp>
 #include <es_util/numeric/even_odd.hpp>
+#include <es_util/numeric/find_root_newton.hpp>
+#include <es_util/numeric/linear_grid.hpp>
 #include <es_util/numeric/power.hpp>
+#include <es_util/numeric/special.hpp>
