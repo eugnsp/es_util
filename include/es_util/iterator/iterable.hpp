@@ -1,5 +1,7 @@
 #pragma once
+#include <cassert>
 #include <iterator>
+#include <type_traits>
 #include <utility>
 
 namespace es_util
@@ -41,6 +43,14 @@ public:
 	{
 		return end_;
 	}
+	
+	auto size() const
+	{
+		const auto size = std::distance<Iterator_begin>(begin_, end_);
+		assert(size > 0);
+
+		return static_cast<std::make_unsigned_t<decltype(size)>>(size);
+	}	
 
 	bool empty() const
 	{
