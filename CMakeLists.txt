@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.7)
 project(es_util VERSION 1.0 DESCRIPTION "Utilities library")
 
 set(CMAKE_CXX_STANDARD 17)

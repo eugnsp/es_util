@@ -38,6 +38,9 @@ double inverse_fd_int_one(double);
 // Returns the logarithm of Fermi-Dirac integral of order 1/2
 double log_fd_int_half(double);
 
+// Returns the inverse Fermi-Dirac integral of order 1/2
+double inverse_fd_int_half(double);
+
 // Returns the inverse Fermi-Dirac integral of order 1/2 of exponential
 double inverseFermiDiracHalfExp(double);
 

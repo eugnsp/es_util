@@ -7,3 +7,4 @@
 #include <es_util/numeric/linear_grid.hpp>
 #include <es_util/numeric/power.hpp>
 #include <es_util/numeric/special.hpp>
+#include <es_util/numeric/trapez_int.hpp>

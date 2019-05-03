@@ -11,6 +11,12 @@ class Linear_grid
 public:
 	Linear_grid() = default;
 
+	static Linear_grid from_min_max(T x_min, T x_max, std::size_t size)
+	{
+		const auto dx = (x_max - x_min) / size;
+		return Linear_grid{x_min, dx, size};
+	}
+
 	explicit Linear_grid(T x0)
 		: x0_(x0), dx_(0), size_(1)
 	{ }
@@ -76,13 +82,13 @@ private:
 // {
 // 	return (grid += offset);
 // }
-// 
+//
 // template<typename T>
 // Linear_grid<T> operator+(T offset, const Linear_grid<T>& grid)
 // {
 // 	return grid + offset;
 // }
-// 
+//
 // template<typename T>
 // Linear_grid<T> operator-(Linear_grid<T> grid, T offset)
 // {
