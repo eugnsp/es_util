@@ -21,5 +21,5 @@ struct Array_size<std::array<T, size>>
 } // namespace internal
 
 template<class Array>
-inline constexpr auto array_size = internal::Array_size<es_util::Remove_cvref<Array>>::value;
+inline constexpr auto array_size = internal::Array_size<es_util::Remove_cv_ref<Array>>::value;
 } // namespace es_util

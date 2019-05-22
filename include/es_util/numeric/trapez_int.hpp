@@ -3,8 +3,8 @@
 
 namespace es_util
 {
-template<typename N, class Xs, class Fn, typename T>
-auto trapez_int(N n_points, Xs&& xs, Fn&& fn, const T init)
+template<typename N, class Xs, class Fn, typename T = double>
+auto trapez_int(N n_points, Xs&& xs, Fn&& fn, const T init = {})
 {
 	auto value = init;
 
