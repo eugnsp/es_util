@@ -6,7 +6,7 @@ namespace es_util
 {
 // Sorts two elements, preserving relative order of the elements
 template<typename T, class Compare>
-void sort2(T& x, T& y, Compare cmp)
+void sort(T& x, T& y, Compare cmp)
 {
 	using std::swap;
 	if (cmp(y, x))
@@ -15,8 +15,25 @@ void sort2(T& x, T& y, Compare cmp)
 
 // Sorts two elements, preserving relative order of the elements
 template<typename T>
-void sort2(T& x, T& y)
+void sort(T& x, T& y)
 {
-	sort2(x, y, std::less<>{});
+	es_util::sort(x, y, std::less<>{});
+}
+
+// Sorts two elements, preserving relative order of the elements
+template<typename T, class Compare>
+std::pair<const T&, const T&> sorted(const T& x, const T& y, Compare cmp)
+{
+	if (cmp(y, x))
+		return {y, x};
+	else
+		return {x, y};
+}
+
+// Sorts two elements, preserving relative order of the elements
+template<typename T>
+std::pair<const T&, const T&> sorted(const T& x, const T& y)
+{
+	return es_util::sorted(x, y, std::less<>{});
 }
 } // namespace es_util

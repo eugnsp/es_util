@@ -22,4 +22,13 @@ constexpr auto unsigned_iabs(Integral n)
 	const Unsigned un = static_cast<Unsigned>(n);
 	return (n >= 0) ? un : (0 - un);
 }
+
+template<typename T>
+constexpr T distance(T n, T m)
+{
+	if (n >= m)
+		return n - m;
+	else
+		return m - n;
+}
 } // namespace es_util
