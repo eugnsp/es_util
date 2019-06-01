@@ -15,7 +15,7 @@ Fw_it for_each_pair_n(Forward_iterator first, N, Fn)
 }
 ```
 
-[Detailed description](doc/ALGORITHM.md)
+[Detailed description](doc/algorithm.md)
 
 ### Containers
 
@@ -77,7 +77,7 @@ public:
 }
 ```
 
-[Detailed description](doc/FENWICK_TREE.md)
+[Detailed description](doc/fenwick_tree.md)
 
 ### Tuples
 
@@ -110,4 +110,8 @@ constexpr auto tuple_map(Fn&&, Tuples&&...);
 }
 ```
 
-[Detailed description](doc/TUPLE.md)
+[Detailed description](doc/tuple.md)
+
+Dependencies: none.
+
+Requires C++11/14/17 compiler.

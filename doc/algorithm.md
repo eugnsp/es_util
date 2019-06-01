@@ -1,6 +1,7 @@
 # Algorithms
 
-Header: `<es_util/algorithm.hpp>`
+Header: `<es_util/algorithm.hpp>`\
+Namespace: `es_util`
 
 ---
 

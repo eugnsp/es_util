@@ -537,7 +537,7 @@ double fd_int_one(double y)
 double inverse_fd_int_one(double x)
 {
 	throw 0;
-	//	return x;
+	return x;
 }
 
 // Returns the inverse Fermi-Dirac integral of order 1/2

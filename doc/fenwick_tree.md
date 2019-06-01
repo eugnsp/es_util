@@ -1,6 +1,7 @@
 # Fenwick tree (binary indexed tree)
 
-Header: `<es_util/container/fenwick_tree.hpp>`
+Header: `<es_util/container/fenwick_tree.hpp>`\
+Namespace: `es_util`
 
 ---
 
@@ -38,7 +39,7 @@ Default constructor. Constructs the empty Fenwick tree.
 Fenwick_tree(Size size);
 ```
 
-Constructs the Fenwick tree of the size `size` initialized with the zero values (`Value{}`).
+Constructs the Fenwick tree of the size `size` with value initialized elements (`Value()`).
 
 *Time complexity:* linear, `O(size)`.
 
@@ -101,7 +102,7 @@ Returns the number of elements in the container.
 *Time complexity:* constant.
 
 ```cpp
-bool capacity() const;
+Size capacity() const;
 ```
 
 Returns the number of elements that the container has currently allocated space for.

@@ -1,6 +1,7 @@
 # Tuples
 
-Header: `<es_util/tuple.hpp>`
+Header: `<es_util/tuple.hpp>`\
+Namespace: `es_util`
 
 ---
 
