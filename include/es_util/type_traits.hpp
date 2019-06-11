@@ -8,4 +8,6 @@
 #include <es_util/type_traits/is_const_reference.hpp>
 #include <es_util/type_traits/is_one_of.hpp>
 #include <es_util/type_traits/nth.hpp>
+#include <es_util/type_traits/remove_cv_ref.hpp>
 #include <es_util/type_traits/std_integral_constant.hpp>
+#include <es_util/type_traits/type_identity.hpp>
