@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <condition_variable>
 #include <mutex>
+#include <type_traits>
 #include <utility>
 
 namespace es_util
@@ -25,7 +26,11 @@ public:
 		const auto generation = generation_;
 		if (++n_wait_ == n_threads_)
 		{
-			completion_fn_();
+			if constexpr (std::is_invocable_v<Completion_fn, std::size_t>)
+				completion_fn_(generation_);
+			else
+				completion_fn_();
+
 			++generation_;
 			n_wait_ = 0;
 
