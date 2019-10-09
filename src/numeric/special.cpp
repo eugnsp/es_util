@@ -1,9 +1,9 @@
-#include <es_util/numeric/const.hpp>
-#include <es_util/numeric/special.hpp>
+#include <esu/numeric/const.hpp>
+#include <esu/numeric/special.hpp>
 
 #include <cmath>
 
-namespace es_util
+namespace esu
 {
 /** References:
 

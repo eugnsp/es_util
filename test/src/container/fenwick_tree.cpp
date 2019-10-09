@@ -1,4 +1,4 @@
-#include <es_util/container/fenwick_tree.hpp>
+#include <esu/container/fenwick_tree.hpp>
 
 #include <algorithm>
 #include <cassert>
@@ -45,7 +45,7 @@ void sum_zero()
 {
 	for (std::size_t size = 1; size <= max_size; ++size)
 	{
-		const es_util::Fenwick_tree<std::size_t> ft(size);
+		const esu::Fenwick_tree<std::size_t> ft(size);
 		assert(ft.size() == size);
 
 		for (std::size_t i = 0; i < size; ++i)
@@ -67,7 +67,7 @@ void sum()
 		std::vector<std::size_t> v(size);
 		std::generate(v.begin(), v.end(), seq);
 
-		const es_util::Fenwick_tree ft(v.begin(), v.end());
+		const esu::Fenwick_tree ft(v.begin(), v.end());
 		assert(ft.size() == size);
 
 		for (std::size_t i = 0; i < size; ++i)
@@ -89,7 +89,7 @@ void add()
 		std::vector<std::size_t> v(size);
 		std::generate(v.begin(), v.end(), seq);
 
-		es_util::Fenwick_tree ft(v.begin(), v.end());
+		esu::Fenwick_tree ft(v.begin(), v.end());
 		assert(ft.size() == size);
 
 		for (std::size_t i = 0; i < size; ++i)
@@ -111,7 +111,7 @@ void set()
 		std::vector<std::size_t> v(size);
 		std::generate(v.begin(), v.end(), seq);
 
-		es_util::Fenwick_tree ft(v.begin(), v.end());
+		esu::Fenwick_tree ft(v.begin(), v.end());
 		assert(ft.size() == size);
 
 		for (std::size_t i = 0; i < size; ++i)
@@ -129,7 +129,7 @@ void set()
 void push()
 {
 	std::vector<std::size_t> v;
-	es_util::Fenwick_tree<std::size_t> ft;
+	esu::Fenwick_tree<std::size_t> ft;
 
 	for (std::size_t size = 1; size <= max_size; ++size)
 	{
@@ -151,7 +151,7 @@ void pop()
 		std::vector<std::size_t> v(size);
 		std::generate(v.begin(), v.end(), seq);
 
-		es_util::Fenwick_tree ft(v.begin(), v.end());
+		esu::Fenwick_tree ft(v.begin(), v.end());
 		assert(ft.size() == size);
 
 		for (std::size_t i = 0; i < size; ++i)
@@ -172,7 +172,7 @@ void lower_upper_bounds_zeros()
 		std::vector<std::size_t> v_acc(size);
 		std::partial_sum(v.begin(), v.end(), v_acc.begin());
 
-		const es_util::Fenwick_tree ft(v.begin(), v.end());
+		const esu::Fenwick_tree ft(v.begin(), v.end());
 
 		for (std::size_t value : {0, 1})
 		{
@@ -192,7 +192,7 @@ void lower_upper_bounds()
 		std::vector<std::size_t> v_acc(size);
 		std::partial_sum(v.begin(), v.end(), v_acc.begin());
 
-		const es_util::Fenwick_tree ft(v.begin(), v.end());
+		const esu::Fenwick_tree ft(v.begin(), v.end());
 
 		const auto max_value = v_acc.back() + 5;
 		for (std::size_t value = 0; value <= max_value; ++value)
