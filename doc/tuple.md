@@ -1,7 +1,7 @@
 # Tuples
 
-Header: `<es_util/tuple.hpp>`\
-Namespace: `es_util`
+Header: `<esu/tuple.hpp>`\
+Namespace: `esu`
 
 ---
 

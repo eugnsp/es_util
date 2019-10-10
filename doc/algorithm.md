@@ -1,7 +1,7 @@
 # Algorithms
 
-Header: `<es_util/algorithm.hpp>`\
-Namespace: `es_util`
+Header: `<esu/algorithm.hpp>`\
+Namespace: `esu`
 
 ---
 

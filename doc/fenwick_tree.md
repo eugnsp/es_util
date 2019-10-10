@@ -1,7 +1,7 @@
 # Fenwick tree (binary indexed tree)
 
-Header: `<es_util/container/fenwick_tree.hpp>`\
-Namespace: `es_util`
+Header: `<esu/container/fenwick_tree.hpp>`\
+Namespace: `esu`
 
 ---
 

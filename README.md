@@ -5,7 +5,7 @@
 ### Algorithms
 
 ```cpp
-namespace es_util
+namespace esu
 {
 template<class Forward_iterator1, class Forward_iterator2, class Fn>
 Fw_it for_each_pair(Forward_iterator1 first, Forward_iterator2 last, Fn);
@@ -22,7 +22,7 @@ Fw_it for_each_pair_n(Forward_iterator first, N, Fn)
 #### Fenwick tree (binary indexed tree)
 
 ```cpp
-namespace es_util
+namespace esu
 {
 template<typename Value_, typename Size_ = std::size_t>
 class Fenwick_tree
@@ -82,7 +82,7 @@ public:
 ### Tuples
 
 ```cpp
-namespace es_util
+namespace esu
 {
 template<class Tuple>
 inline constexpr auto tuple_size;
