@@ -7,6 +7,7 @@
 #include <esu/type_traits/index_of.hpp>
 #include <esu/type_traits/is_const_reference.hpp>
 #include <esu/type_traits/is_one_of.hpp>
+#include <esu/type_traits/memory.hpp>
 #include <esu/type_traits/nth.hpp>
 #include <esu/type_traits/remove_cv_ref.hpp>
 #include <esu/type_traits/std_integral_constant.hpp>
